@@ -52,40 +52,54 @@ public class Scenario_SecondServ_Frag extends Fragment implements View.OnClickLi
     @Override
     public void onClick(View v) {
         if (v == iwAce) {
-            getFragmentManager().beginTransaction()
+
+            getFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                     .replace(R.id.fragmentContainer, new Scenario_Score())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit();
 
         }
 
         else if (v == iwFault) {
-            getFragmentManager().beginTransaction()
+
+            getFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                     .replace(R.id.fragmentContainer, new Scenario_Score())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
+
         }
 
         else if (v == iwIn) {
-            getFragmentManager().beginTransaction()
+
+            getFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                     .replace(R.id.fragmentContainer, new Scenario_Who_Won_Point_Frag())
                     .addToBackStack(null)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
+
         }
 
         else if (v == iwFootFault) {
-            getFragmentManager().beginTransaction()
+
+            getFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                     .replace(R.id.fragmentContainer, new Scenario_Score())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
+
         }
 
         else if (v == iwServiceWinner) {
-            getFragmentManager().beginTransaction()
+
+            getFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                     .replace(R.id.fragmentContainer, new Scenario_Score())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit();
+
         }
 
     }

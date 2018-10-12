@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.marcusac.dk.racketstats.R;
 import com.marcusac.dk.racketstats.View.Fragments.Match_Setup_Category_Frag;
 

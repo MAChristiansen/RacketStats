@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.marcusac.dk.racketstats.R;
 
 /**
@@ -43,18 +45,22 @@ public class Scenario_Who_Won_Point_Frag extends Fragment implements View.OnClic
     @Override
     public void onClick(View v) {
         if (v == btnTeam1) {
-            getFragmentManager().beginTransaction()
+
+            getFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                     .replace(R.id.fragmentContainer, new Scenario_How_Won_Frag())
                     .addToBackStack(null)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         }
 
         else if (v == btnTeam2) {
-            getFragmentManager().beginTransaction()
+
+            getFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                     .replace(R.id.fragmentContainer, new Scenario_How_Won_Frag())
                     .addToBackStack(null)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         }
     }

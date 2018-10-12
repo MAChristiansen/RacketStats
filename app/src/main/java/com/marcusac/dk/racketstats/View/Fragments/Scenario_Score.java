@@ -4,6 +4,7 @@ package com.marcusac.dk.racketstats.View.Fragments;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,12 +38,20 @@ public class Scenario_Score extends Fragment {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                getFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new Scenario_FirstServ_Frag())
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                        .commit();
-                getFragmentManager().popBackStack();
+
+
+
+                getFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                /*getFragmentManager()
+                        .beginTransaction()
+                        .setCustomAnimations(R.anim.enter_from_right.xml, R.anim.exit_to_left)
+                        .replace(R.id.fragmentContainer, new Scenario_FirstServ_Frag())
+                        .commit();*/
+
+
+
             }
-        }, 3000);
+        }, 2500);
 
         return root;
     }
