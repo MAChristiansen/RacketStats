@@ -13,11 +13,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@color/colorPrimaryDark"
         android:paddingLeft="16dp"
         android:stretchColumns="5"
-        android:background="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -50,8 +49,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="3dip"
                 android:layout_marginLeft="20dp"
+                android:padding="3dip"
                 android:text="Sets"
                 android:textColor="@color/colorTextWhite"
                 android:textStyle="bold" />
@@ -60,8 +59,8 @@
                 android:id="@+id/labelGames"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="3dip"
                 android:layout_gravity="center"
+                android:padding="3dip"
                 android:text="Games"
                 android:textColor="@color/colorTextWhite"
                 android:textStyle="bold" />
@@ -70,9 +69,9 @@
                 android:id="@+id/labelPoints"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="3dip"
-                android:layout_marginLeft="4dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:padding="3dip"
                 android:text="Points"
                 android:textColor="@color/colorTextWhite"
                 android:textStyle="bold" />
@@ -105,8 +104,8 @@
                 android:id="@+id/team1Set"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
                 android:text="0"
                 android:textColor="@color/colorTextWhite" />
 
@@ -122,8 +121,8 @@
                 android:id="@+id/team1Points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
                 android:text="40"
                 android:textColor="@color/colorTextWhite" />
 
@@ -156,8 +155,8 @@
                 android:id="@+id/team2Set"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
                 android:text="0"
                 android:textColor="@color/colorTextWhite" />
 
@@ -173,8 +172,8 @@
                 android:id="@+id/team2Points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
                 android:text="15"
                 android:textColor="@color/colorTextWhite" />
         </TableRow>

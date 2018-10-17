@@ -9,27 +9,12 @@
     tools:layout_editor_absoluteY="81dp">
 
 
-    <TextView
-        android:id="@+id/labelAce3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="ACE"
-        android:textColor="@color/colorTextBlack"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/iwAce"
-        app:layout_constraintStart_toStartOf="@+id/iwAce"
-        app:layout_constraintTop_toBottomOf="@+id/iwAce" />
-
     <ImageView
         android:id="@+id/iwFault"
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:elevation="5dp"
-        android:src="@drawable/serv_icon"
+        android:src="@drawable/fault"
         app:layout_constraintBottom_toTopOf="@+id/iwIn"
         app:layout_constraintStart_toEndOf="@+id/iwIn" />
 
@@ -38,7 +23,7 @@
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:elevation="5dp"
-        android:src="@drawable/serv_icon"
+        android:src="@drawable/ace"
         app:layout_constraintBottom_toTopOf="@+id/iwIn"
         app:layout_constraintEnd_toStartOf="@+id/iwIn" />
 
@@ -51,18 +36,19 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:elevation="5dp"
-        android:src="@drawable/serv_icon"
+        android:src="@drawable/in_play"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55" />
 
     <ImageView
         android:id="@+id/iwFootFault"
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:elevation="5dp"
-        android:src="@drawable/serv_icon"
+        android:src="@drawable/footfault"
         app:layout_constraintEnd_toStartOf="@+id/iwIn"
         app:layout_constraintTop_toBottomOf="@+id/iwIn" />
 
@@ -71,24 +57,9 @@
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:elevation="5dp"
-        android:src="@drawable/serv_icon"
+        android:src="@drawable/service_winner"
         app:layout_constraintStart_toEndOf="@+id/iwIn"
         app:layout_constraintTop_toBottomOf="@+id/iwIn" />
-
-    <TextView
-        android:id="@+id/labelAce"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="ACE"
-        android:textColor="@color/colorTextBlack"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/iwAce"
-        app:layout_constraintStart_toStartOf="@+id/iwAce"
-        app:layout_constraintTop_toBottomOf="@+id/iwAce" />
 
     <TextView
         android:id="@+id/labelFirstServ"
@@ -99,70 +70,10 @@
         android:layout_marginTop="16dp"
         android:text="First Serv"
         android:textColor="@color/colorTextBlack"
-        android:textSize="18sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/labelFault"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="FAULT"
-        android:textColor="@color/colorTextBlack"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/iwFault"
-        app:layout_constraintStart_toStartOf="@+id/iwFault"
-        app:layout_constraintTop_toBottomOf="@+id/iwFault" />
-
-    <TextView
-        android:id="@+id/labelIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="IN"
-        android:textColor="@color/colorTextBlack"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/iwIn"
-        app:layout_constraintStart_toStartOf="@+id/iwIn"
-        app:layout_constraintTop_toBottomOf="@+id/iwIn" />
-
-    <TextView
-        android:id="@+id/labelFootFault"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="FOOT FAULT"
-        android:textColor="@color/colorTextBlack"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/iwFootFault"
-        app:layout_constraintStart_toStartOf="@+id/iwFootFault"
-        app:layout_constraintTop_toBottomOf="@+id/iwFootFault" />
-
-    <TextView
-        android:id="@+id/labelServiceWinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="SERVICE WINNER"
-        android:textColor="@color/colorTextBlack"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/iwServiceWinner"
-        app:layout_constraintStart_toStartOf="@+id/iwServiceWinner"
-        app:layout_constraintTop_toBottomOf="@+id/iwServiceWinner" />
 
 </android.support.constraint.ConstraintLayout>

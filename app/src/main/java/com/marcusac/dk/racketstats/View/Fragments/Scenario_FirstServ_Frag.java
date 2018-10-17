@@ -62,6 +62,7 @@ public class Scenario_FirstServ_Frag extends Fragment implements View.OnClickLis
                    .beginTransaction()
                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                    .replace(R.id.fragmentContainer, new Scenario_Score())
+                   .addToBackStack(null)
                    .commit();
 
         }
@@ -105,6 +106,7 @@ public class Scenario_FirstServ_Frag extends Fragment implements View.OnClickLis
                     .beginTransaction()
                     .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                     .replace(R.id.fragmentContainer, new Scenario_Score())
+                    .addToBackStack(null)
                     .commit();
 
         }
