@@ -11,21 +11,25 @@
 
     <ImageView
         android:id="@+id/iwFault"
-        android:layout_width="125dp"
+        android:layout_width="0dp"
         android:layout_height="125dp"
+        android:layout_marginEnd="8dp"
         android:elevation="5dp"
         android:src="@drawable/fault"
         app:layout_constraintBottom_toTopOf="@+id/iwIn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iwIn" />
 
     <ImageView
         android:id="@+id/iwAce"
-        android:layout_width="125dp"
+        android:layout_width="0dp"
         android:layout_height="125dp"
+        android:layout_marginStart="8dp"
         android:elevation="5dp"
         android:src="@drawable/ace"
         app:layout_constraintBottom_toTopOf="@+id/iwIn"
-        app:layout_constraintEnd_toStartOf="@+id/iwIn" />
+        app:layout_constraintEnd_toStartOf="@+id/iwIn"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/iwIn"
@@ -45,30 +49,35 @@
 
     <ImageView
         android:id="@+id/iwFootFault"
-        android:layout_width="125dp"
+        android:layout_width="0dp"
         android:layout_height="125dp"
+        android:layout_marginStart="8dp"
         android:elevation="5dp"
         android:src="@drawable/footfault"
         app:layout_constraintEnd_toStartOf="@+id/iwIn"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iwIn" />
 
     <ImageView
         android:id="@+id/iwServiceWinner"
-        android:layout_width="125dp"
+        android:layout_width="0dp"
         android:layout_height="125dp"
+        android:layout_marginEnd="8dp"
         android:elevation="5dp"
         android:src="@drawable/service_winner"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iwIn"
         app:layout_constraintTop_toBottomOf="@+id/iwIn" />
 
     <TextView
-        android:id="@+id/labelSecondServ"
-        android:layout_width="wrap_content"
+        android:id="@+id/labelFirstServ"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="Second Serv"
+        android:textAlignment="center"
         android:textColor="@color/colorTextBlack"
         android:textSize="28sp"
         android:textStyle="bold"

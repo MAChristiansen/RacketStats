@@ -12,58 +12,57 @@
 
     <ImageView
         android:id="@+id/ivBaseline"
-        android:layout_width="115dp"
-        android:layout_height="115dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/baseline"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivApproach" />
 
     <ImageView
         android:id="@+id/ivApproach"
-        android:layout_width="100dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/approach"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ivSmash"
+        app:layout_constraintStart_toStartOf="@+id/ivSmash"
         app:layout_constraintTop_toBottomOf="@+id/ivSmash" />
 
     <ImageView
         android:id="@+id/ivLob"
-        android:layout_width="100dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/lob"
-        app:layout_constraintEnd_toStartOf="@+id/ivApproach"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivApproach" />
+        app:layout_constraintEnd_toEndOf="@+id/ivDropShot"
+        app:layout_constraintStart_toStartOf="@+id/ivDropShot"
+        app:layout_constraintTop_toBottomOf="@+id/ivDropShot" />
 
     <ImageView
         android:id="@+id/ivReturn"
-        android:layout_width="100dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/serv_return"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivApproach"
-        app:layout_constraintTop_toTopOf="@+id/ivApproach" />
+        app:layout_constraintEnd_toEndOf="@+id/ivVolley"
+        app:layout_constraintStart_toStartOf="@+id/ivVolley"
+        app:layout_constraintTop_toBottomOf="@+id/ivVolley" />
 
     <TextView
         android:id="@+id/labelWhichStroke"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Winner Stroke"
+        android:textAlignment="center"
         android:textColor="@color/colorTextBlack"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -74,35 +73,36 @@
     <ImageView
         android:id="@+id/ivSmash"
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="70dp"
         android:src="@drawable/smash"
+        app:layout_constraintBottom_toBottomOf="@+id/ivDropShot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/ivDropShot" />
 
     <ImageView
         android:id="@+id/ivVolley"
-        android:layout_width="100dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="8dp"
         android:src="@drawable/volley"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivSmash"
-        app:layout_constraintTop_toTopOf="@+id/ivSmash" />
+        app:layout_constraintTop_toTopOf="@+id/ivDropShot" />
 
     <ImageView
         android:id="@+id/ivDropShot"
-        android:layout_width="100dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/dropshot"
         app:layout_constraintEnd_toStartOf="@+id/ivSmash"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivSmash" />
+        app:layout_constraintTop_toBottomOf="@+id/labelWhichStroke" />
 
 </android.support.constraint.ConstraintLayout>
