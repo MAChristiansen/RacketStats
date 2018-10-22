@@ -1,24 +1,33 @@
 package com.marcusac.dk.racketstats.View.Activities;
 
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.marcusac.dk.racketstats.Controller.MatchController;
 import com.marcusac.dk.racketstats.R;
 import com.marcusac.dk.racketstats.View.Fragments.Scenario_FirstServ_Frag;
 
-public class Match extends AppCompatActivity {
+public class Match_Act extends AppCompatActivity {
 
     TextView team1Set;
+    TextView tvTeam1Names;
+    TextView tvTeam2Names;
+
+    MatchController matchController = new MatchController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match);
-        setTitle("Match");
+        getSupportActionBar().hide();
+
+        tvTeam1Names = findViewById(R.id.tvTeam1Names);
+        tvTeam2Names = findViewById(R.id.tvTeam2Names);
 
         if (savedInstanceState == null) {
             Fragment fragment = new Scenario_FirstServ_Frag();
@@ -47,8 +56,8 @@ public class Match extends AppCompatActivity {
         alertConfirm.setPositiveButton("Yes!", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Match.super.onBackPressed();
-                Match.this.finish();
+                Match_Act.super.onBackPressed();
+                Match_Act.this.finish();
             }
         });
 

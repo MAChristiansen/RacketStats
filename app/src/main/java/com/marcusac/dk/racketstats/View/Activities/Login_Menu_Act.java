@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import com.marcusac.dk.racketstats.R;
 
-public class Login_Menu extends AppCompatActivity implements View.OnClickListener {
+public class Login_Menu_Act extends AppCompatActivity implements View.OnClickListener {
 
     Button btnContinue;
 
@@ -26,7 +26,7 @@ public class Login_Menu extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if (v == btnContinue) {
-            startActivity(new Intent(this, Match_Setup.class));
+            startActivity(new Intent(this, Match_Setup_Act.class));
         }
     }
 }

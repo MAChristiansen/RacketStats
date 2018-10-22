@@ -73,12 +73,12 @@
         android:textColor="#000"
         android:textColorHint="#000"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/etTeam2Player"
-        app:layout_constraintStart_toStartOf="@+id/etTeam2Player"
-        app:layout_constraintTop_toBottomOf="@+id/etTeam2Player" />
+        app:layout_constraintEnd_toEndOf="@+id/etTeam2Player1"
+        app:layout_constraintStart_toStartOf="@+id/etTeam2Player1"
+        app:layout_constraintTop_toBottomOf="@+id/etTeam2Player1" />
 
     <EditText
-        android:id="@+id/etTeam2Player"
+        android:id="@+id/etTeam2Player1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="64dp"

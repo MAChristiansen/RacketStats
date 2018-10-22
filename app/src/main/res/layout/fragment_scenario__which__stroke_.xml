@@ -5,7 +5,7 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.Activities.Login_Menu"
+    tools:context=".View.Activities.Login_Menu_Act"
     tools:layout_editor_absoluteY="81dp">
 
     s
@@ -13,7 +13,7 @@
     <ImageView
         android:id="@+id/ivBaseline"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="125dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"

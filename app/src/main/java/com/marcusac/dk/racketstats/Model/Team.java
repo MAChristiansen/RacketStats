@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Team {
 
     private String teamID;
-    private ArrayList<Player> players;
+    private ArrayList<String> playerIDs;
 
-    public Team(String teamID, ArrayList<Player> players) {
+    public Team(String teamID, ArrayList<String> playerIDs) {
         this.teamID = teamID;
-        this.players = players;
+        this.playerIDs = playerIDs;
     }
 
     public String getTeamID() {
@@ -20,11 +20,13 @@ public class Team {
         this.teamID = teamID;
     }
 
-    public ArrayList<Player> getPlayers() {
-        return players;
+    public ArrayList<String> getPlayerIDs() {
+        return playerIDs;
     }
 
-    public void setPlayers(ArrayList<Player> players) {
-        this.players = players;
+    public void setPlayerIDs(ArrayList<String> playerIDs) {
+        this.playerIDs = playerIDs;
     }
+
+
 }

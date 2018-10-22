@@ -6,16 +6,21 @@ public class Player {
     private String name;
     private String age;
     private String club;
-    private String playingHand;
+    private String hand;
 
     public Player() {}
+
+    public Player(String playerID, String name) {
+        this.playerID = playerID;
+        this.name = name;
+    }
 
     public Player(String playerID, String name, String age, String club, String playingHand) {
         this.playerID = playerID;
         this.name = name;
         this.age = age;
         this.club = club;
-        this.playingHand = playingHand;
+        this.hand = playingHand;
     }
 
     public String getPlayerID() {
@@ -50,11 +55,13 @@ public class Player {
         this.club = club;
     }
 
-    public String getPlayingHand() {
-        return playingHand;
+    public String getHand() {
+        return hand;
     }
 
-    public void setPlayingHand(String playingHand) {
-        this.playingHand = playingHand;
+    public void setHand(String hand) {
+        this.hand = hand;
     }
+
+
 }
