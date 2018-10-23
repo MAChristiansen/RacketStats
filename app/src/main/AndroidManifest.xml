@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".View.Activities.Match_Setup_Act" />
         <activity android:name=".View.Activities.Match_Act"></activity>
+        <activity android:name=".Controller.MyTaskTest" />
     </application>
 
 </manifest>

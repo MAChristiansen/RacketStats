@@ -73,6 +73,8 @@ public class PlayerController {
 
         Match match = new Match(matchID, CurrentMatch.currentTeam1ID, CurrentMatch.currentTeam2ID, scorePoints, scoreGames, scoreSets, isMatchSingle);
 
+        CurrentMatch.currentMatchID = matchID;
+
         dbRefMatch.child(matchID).setValue(match);
 
     }

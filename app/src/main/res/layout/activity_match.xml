@@ -179,7 +179,7 @@
             app:layout_constraintTop_toTopOf="@+id/tvTeam2Names" />
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/tvTeam1Points"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="40"
@@ -192,7 +192,7 @@
             app:layout_constraintTop_toTopOf="@+id/tvTeam1Names" />
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/tvTeam2Points"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="15"

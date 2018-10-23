@@ -2,21 +2,39 @@ package com.marcusac.dk.racketstats.View.Activities;
 
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.marcusac.dk.racketstats.Controller.FirebaseController;
 import com.marcusac.dk.racketstats.Controller.MatchController;
+import com.marcusac.dk.racketstats.Model.CurrentMatch;
+import com.marcusac.dk.racketstats.Model.Match;
 import com.marcusac.dk.racketstats.R;
 import com.marcusac.dk.racketstats.View.Fragments.Scenario_FirstServ_Frag;
 
 public class Match_Act extends AppCompatActivity {
 
-    TextView team1Set;
+    FirebaseController firebaseController = new FirebaseController();
+
     TextView tvTeam1Names;
     TextView tvTeam2Names;
+    TextView tvTeam1Sets;
+    TextView tvTeam2Sets;
+    TextView tvTeam1Games;
+    TextView tvTeam2Games;
+    TextView tvTeam1Points;
+    TextView tvTeam2Points;
 
     MatchController matchController = new MatchController();
 
@@ -28,6 +46,12 @@ public class Match_Act extends AppCompatActivity {
 
         tvTeam1Names = findViewById(R.id.tvTeam1Names);
         tvTeam2Names = findViewById(R.id.tvTeam2Names);
+        tvTeam1Sets = findViewById(R.id.tvTeam1Sets);
+        tvTeam2Sets = findViewById(R.id.tvTeam2Sets);
+        tvTeam1Games = findViewById(R.id.tvTeam1Games);
+        tvTeam2Games = findViewById(R.id.tvTeam2Games);
+        tvTeam1Points = findViewById(R.id.tvTeam1Points);
+        tvTeam2Points = findViewById(R.id.tvTeam2Points);
 
         if (savedInstanceState == null) {
             Fragment fragment = new Scenario_FirstServ_Frag();
@@ -35,6 +59,8 @@ public class Match_Act extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, fragment).commit();
         }
 
+        matchController.updateScoreBoardNames(tvTeam1Names, tvTeam2Names);
+        matchController.updateScoreBoardScore(tvTeam1Sets,tvTeam2Sets, tvTeam1Games,tvTeam2Games,tvTeam1Points,tvTeam2Points);
     }
 
     @Override
@@ -69,7 +95,5 @@ public class Match_Act extends AppCompatActivity {
         });
 
         alertConfirm.create().show();
-
     }
-
 }
