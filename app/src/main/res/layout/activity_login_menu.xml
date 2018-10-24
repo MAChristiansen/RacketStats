@@ -34,12 +34,12 @@
         android:text="Tennis Edition"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnContinue"
+        app:layout_constraintBottom_toTopOf="@+id/btnContinue3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnContinue"
+        android:id="@+id/btnContinue3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -74,5 +74,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnContinue" />
+        app:layout_constraintTop_toBottomOf="@+id/btnContinue3" />
 </android.support.constraint.ConstraintLayout>

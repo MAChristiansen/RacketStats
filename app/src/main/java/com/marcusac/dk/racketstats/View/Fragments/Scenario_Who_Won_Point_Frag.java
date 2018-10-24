@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.marcusac.dk.racketstats.Controller.MatchController;
 import com.marcusac.dk.racketstats.R;
 
 /**
@@ -21,6 +22,7 @@ public class Scenario_Who_Won_Point_Frag extends Fragment implements View.OnClic
     Button btnTeam1;
     Button btnTeam2;
 
+    MatchController matchController = new MatchController();
 
     public Scenario_Who_Won_Point_Frag() {
         // Required empty public constructor
@@ -38,6 +40,8 @@ public class Scenario_Who_Won_Point_Frag extends Fragment implements View.OnClic
 
         btnTeam1.setOnClickListener(this);
         btnTeam2.setOnClickListener(this);
+
+        matchController.setPlayerNamesToBtns(btnTeam1, btnTeam2);
 
         return root;
     }

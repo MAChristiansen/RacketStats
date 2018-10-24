@@ -1,7 +1,6 @@
 package com.marcusac.dk.racketstats.View.Fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -11,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.marcusac.dk.racketstats.Controller.PlayerController;
+import com.marcusac.dk.racketstats.Model.CurrentMatch;
 import com.marcusac.dk.racketstats.R;
-import com.marcusac.dk.racketstats.View.Activities.Match_Act;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,8 +27,6 @@ public class Match_Setup_Teams_Frag extends Fragment implements View.OnClickList
 
     PlayerController playerController = new PlayerController();
 
-    boolean isMatchSingle;
-
 
     public Match_Setup_Teams_Frag() {
         // Required empty public constructor
@@ -42,15 +39,13 @@ public class Match_Setup_Teams_Frag extends Fragment implements View.OnClickList
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_match__setup__teams_, container, false);
 
-        isMatchSingle = getArguments().getBoolean("isMatchSingle");
-
-        btnContinue = root.findViewById(R.id.btnContinue);
+        btnContinue = root.findViewById(R.id.btnContinue3);
         etTeam1Player1 = root.findViewById(R.id.etTeam1Player1);
         etTeam1Player2 = root.findViewById(R.id.etTeam1Player2);
         etTeam2Player1 = root.findViewById(R.id.etTeam2Player1);
         etTeam2Player2 = root.findViewById(R.id.etTeam2Player2);
 
-        if (isMatchSingle) {
+        if (CurrentMatch.isMatchSingle) {
             etTeam1Player2.setVisibility(View.INVISIBLE);
             etTeam2Player2.setVisibility(View.INVISIBLE);
             etTeam1Player1.setHint("Player name");
@@ -65,19 +60,27 @@ public class Match_Setup_Teams_Frag extends Fragment implements View.OnClickList
     public void onClick(View v) {
         if (v == btnContinue) {
 
-            if (isMatchSingle) {
-                playerController.saveSingleTeam(etTeam1Player1.getText().toString());
-                playerController.saveSingleTeam(etTeam2Player1.getText().toString());
-                playerController.createMatch(isMatchSingle);
+            Bundle b = new Bundle();
+            Fragment fragment = new Match_Setup_Config_Frag();
+
+            if (CurrentMatch.isMatchSingle) {
+                b.putString("team1Player1", etTeam1Player1.getText().toString());
+                b.putString("team2Player1", etTeam2Player1.getText().toString());
             } else {
-                playerController.saveDoubleTeam(etTeam1Player1.getText().toString(), etTeam1Player2.getText().toString());
-                playerController.saveDoubleTeam(etTeam2Player1.getText().toString(), etTeam2Player2.getText().toString());
-                playerController.createMatch(isMatchSingle);
+                b.putString("team1Player1", etTeam1Player1.getText().toString());
+                b.putString("team1Player2", etTeam1Player2.getText().toString());
+                b.putString("team2Player1", etTeam2Player1.getText().toString());
+                b.putString("team2Player2", etTeam2Player2.getText().toString());
             }
 
-            startActivity(new Intent(getActivity(), Match_Act.class));
-            getActivity().finish();
+            fragment.setArguments(b);
 
+            getFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
+                    .replace(R.id.fragmentContainer, fragment)
+                    .addToBackStack(null)
+                    .commit();
         }
     }
 }

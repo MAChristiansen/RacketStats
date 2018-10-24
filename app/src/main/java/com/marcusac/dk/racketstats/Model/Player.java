@@ -7,6 +7,7 @@ public class Player {
     private String age;
     private String club;
     private String hand;
+    private boolean serving = false;
 
     public Player() {}
 
@@ -63,5 +64,11 @@ public class Player {
         this.hand = hand;
     }
 
+    public boolean isServing() {
+        return serving;
+    }
 
+    public void setServing(boolean serving) {
+        this.serving = serving;
+    }
 }

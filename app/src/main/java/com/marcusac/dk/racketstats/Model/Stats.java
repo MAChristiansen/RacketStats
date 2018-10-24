@@ -6,12 +6,12 @@ public class Stats {
 
     private String playerID;
     private String matchID;
-    private ArrayList<SetStats> sets;
+    private ArrayList<SetStats> setStats;
 
     public Stats(String playerID, String matchID, ArrayList<SetStats> sets) {
         this.playerID = playerID;
         this.matchID = matchID;
-        this.sets = sets;
+        this.setStats = sets;
     }
 
     public String getPlayerID() {
@@ -30,11 +30,11 @@ public class Stats {
         this.matchID = matchID;
     }
 
-    public ArrayList<SetStats> getSets() {
-        return sets;
+    public ArrayList<SetStats> getSetStats() {
+        return setStats;
     }
 
-    public void setSets(ArrayList<SetStats> sets) {
-        this.sets = sets;
+    public void setSetStats(ArrayList<SetStats> setStats) {
+        this.setStats = setStats;
     }
 }

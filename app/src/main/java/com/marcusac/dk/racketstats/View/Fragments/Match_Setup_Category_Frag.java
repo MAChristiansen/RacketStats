@@ -1,17 +1,15 @@
 package com.marcusac.dk.racketstats.View.Fragments;
 
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.marcusac.dk.racketstats.Model.CurrentMatch;
 import com.marcusac.dk.racketstats.R;
 
 /**
@@ -23,8 +21,6 @@ public class Match_Setup_Category_Frag extends Fragment implements View.OnClickL
     private Button btnSingle;
     private Button btnDouble;
 
-    private boolean matchIsSingle = true;
-
 
     public Match_Setup_Category_Frag() {
         // Required empty public constructor
@@ -35,8 +31,9 @@ public class Match_Setup_Category_Frag extends Fragment implements View.OnClickL
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_match__setup__category, container, false);
+        CurrentMatch.isMatchSingle = true;
 
-        btnContinue = root.findViewById(R.id.btnContinue);
+        btnContinue = root.findViewById(R.id.btnContinue3);
         btnSingle = root.findViewById(R.id.btnSingle);
         btnDouble = root.findViewById(R.id.btnDouble);
 
@@ -52,7 +49,7 @@ public class Match_Setup_Category_Frag extends Fragment implements View.OnClickL
     public void onResume() {
         super.onResume();
 
-        if (matchIsSingle) {
+        if (CurrentMatch.isMatchSingle) {
             btnDouble.setBackgroundResource(R.color.colorAccent);
             btnDouble.setElevation(0);
 
@@ -70,23 +67,18 @@ public class Match_Setup_Category_Frag extends Fragment implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-
-
-
         if (v == btnContinue) {
             Fragment newFragment = new Match_Setup_Teams_Frag();
-            Bundle b = new Bundle();
-            b.putBoolean("isMatchSingle", matchIsSingle);
-            newFragment.setArguments(b);
 
             getFragmentManager().beginTransaction()
+                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                     .replace(R.id.fragmentContainer, newFragment)
-                    .addToBackStack(null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .addToBackStack(null)
                     .commit();
 
         }
         else if (v == btnSingle) {
-            matchIsSingle = true;
+            CurrentMatch.isMatchSingle = true;
 
             btnDouble.setBackgroundResource(R.color.colorAccent);
             btnDouble.setElevation(0);
@@ -97,7 +89,7 @@ public class Match_Setup_Category_Frag extends Fragment implements View.OnClickL
 
         }
         else if (v == btnDouble) {
-            matchIsSingle = false;
+            CurrentMatch.isMatchSingle = false;
 
             btnSingle.setBackgroundResource(R.color.colorAccent);
             btnSingle.setElevation(0);

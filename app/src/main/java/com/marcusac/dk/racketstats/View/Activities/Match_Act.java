@@ -9,6 +9,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +25,8 @@ import com.marcusac.dk.racketstats.Model.Match;
 import com.marcusac.dk.racketstats.R;
 import com.marcusac.dk.racketstats.View.Fragments.Scenario_FirstServ_Frag;
 
+import java.util.ArrayList;
+
 public class Match_Act extends AppCompatActivity {
 
     FirebaseController firebaseController = new FirebaseController();
@@ -35,8 +39,13 @@ public class Match_Act extends AppCompatActivity {
     TextView tvTeam2Games;
     TextView tvTeam1Points;
     TextView tvTeam2Points;
+    TextView tvSets;
+    TextView tvGames;
+    private ImageView ivTeam1Serving;
+    private ImageView ivTeam2Serving;
 
     MatchController matchController = new MatchController();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +61,10 @@ public class Match_Act extends AppCompatActivity {
         tvTeam2Games = findViewById(R.id.tvTeam2Games);
         tvTeam1Points = findViewById(R.id.tvTeam1Points);
         tvTeam2Points = findViewById(R.id.tvTeam2Points);
+        tvGames = findViewById(R.id.tvGames);
+        tvSets = findViewById(R.id.tvSets);
+        ivTeam1Serving = findViewById(R.id.ivTeam1Serving);
+        ivTeam2Serving = findViewById(R.id.ivTeam2Serving);
 
         if (savedInstanceState == null) {
             Fragment fragment = new Scenario_FirstServ_Frag();
@@ -59,8 +72,11 @@ public class Match_Act extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, fragment).commit();
         }
 
-        matchController.updateScoreBoardNames(tvTeam1Names, tvTeam2Names);
-        matchController.updateScoreBoardScore(tvTeam1Sets,tvTeam2Sets, tvTeam1Games,tvTeam2Games,tvTeam1Points,tvTeam2Points);
+        matchController.updateScoreBoardScore(tvTeam1Sets, tvTeam2Sets, tvTeam1Games, tvTeam2Games, tvTeam1Points, tvTeam2Points, tvSets, tvGames);
+        matchController.setPlayerNamesToTextViews(tvTeam1Names, tvTeam2Names);
+        matchController.whoStartsServing(this, ivTeam1Serving, ivTeam2Serving);
+
+
     }
 
     @Override
@@ -71,6 +87,9 @@ public class Match_Act extends AppCompatActivity {
         } else {
             getSupportFragmentManager().popBackStack();
         }
+
+
+
     }
 
     private void createDialog() {
@@ -96,4 +115,6 @@ public class Match_Act extends AppCompatActivity {
 
         alertConfirm.create().show();
     }
+
+
 }

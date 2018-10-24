@@ -6,6 +6,7 @@ public class Team {
 
     private String teamID;
     private ArrayList<String> playerIDs;
+    private boolean serving = false;
 
     public Team(String teamID, ArrayList<String> playerIDs) {
         this.teamID = teamID;
@@ -28,5 +29,11 @@ public class Team {
         this.playerIDs = playerIDs;
     }
 
+    public boolean isServing() {
+        return serving;
+    }
 
+    public void setServing(boolean serving) {
+        this.serving = serving;
+    }
 }

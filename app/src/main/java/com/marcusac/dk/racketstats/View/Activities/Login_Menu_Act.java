@@ -17,7 +17,7 @@ public class Login_Menu_Act extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_menu);
 
-        btnContinue = findViewById(R.id.btnContinue);
+        btnContinue = findViewById(R.id.btnContinue3);
 
         btnContinue.setOnClickListener(this);
 

@@ -3,69 +3,69 @@ package com.marcusac.dk.racketstats.Model;
 public class SetStats {
 
     //Serv stats
-    private int firstServAce;
-    private int secondServAce;
-    private int firstServiceWinner;
-    private int secondServiceWinner;
-    private int firstServInPlay;
-    private int secondServInPlay;
-    private int firstServFootFault;
-    private int secondServFootFault;
-    private int doubleFault;
+    private int firstServAce = 0;
+    private int secondServAce = 0;
+    private int firstServiceWinner = 0;
+    private int secondServiceWinner = 0;
+    private int firstServInPlay = 0;
+    private int secondServInPlay = 0;
+    private int firstServFootFault = 0;
+    private int secondServFootFault = 0;
+    private int doubleFault = 0;
 
     //forhand Winner stats
-    private int forhandBaselineWinner;
-    private int forhandDropShotWinner;
-    private int forhandSmashWinner;
-    private int forhandVolleyWinner;
-    private int forhandLobWinner;
-    private int forhandAppoachWinner;
-    private int forhandReturnWinner;
+    private int forhandBaselineWinner = 0;
+    private int forhandDropShotWinner = 0;
+    private int forhandSmashWinner = 0;
+    private int forhandVolleyWinner = 0;
+    private int forhandLobWinner = 0;
+    private int forhandAppoachWinner = 0;
+    private int forhandReturnWinner = 0;
 
     //forhand Unforced Error
-    private int forhandBaselineUnforcedError;
-    private int forhandDropShotUnforcedError;
-    private int forhandSmashUnforcedError;
-    private int forhandVolleyUnforcedError;
-    private int forhandLobUnforcedError;
-    private int forhandAppoachUnforcedError;
-    private int forhandReturnUnforcedError;
+    private int forhandBaselineUnforcedError = 0;
+    private int forhandDropShotUnforcedError = 0;
+    private int forhandSmashUnforcedError = 0;
+    private int forhandVolleyUnforcedError = 0;
+    private int forhandLobUnforcedError = 0;
+    private int forhandAppoachUnforcedError = 0;
+    private int forhandReturnUnforcedError = 0;
 
     //forhand Forced Errors
-    private int forhandBaselineForcedError;
-    private int forhandDropShotForcedError;
-    private int forhandSmashForcedError;
-    private int forhandVolleyForcedError;
-    private int forhandLobForcedError;
-    private int forhandAppoachForcedError;
-    private int forhandReturnForcedError;
+    private int forhandBaselineForcedError = 0;
+    private int forhandDropShotForcedError = 0;
+    private int forhandSmashForcedError = 0;
+    private int forhandVolleyForcedError = 0;
+    private int forhandLobForcedError = 0;
+    private int forhandAppoachForcedError = 0;
+    private int forhandReturnForcedError = 0;
 
     //backhand Winner stats
-    private int backhandBaselineWinner;
-    private int backhandDropShotWinner;
-    private int backhandSmashWinner;
-    private int backhandVolleyWinner;
-    private int backhandLobWinner;
-    private int backhandAppoachWinner;
-    private int backhandReturnWinner;
+    private int backhandBaselineWinner = 0;
+    private int backhandDropShotWinner = 0;
+    private int backhandSmashWinner = 0;
+    private int backhandVolleyWinner = 0;
+    private int backhandLobWinner = 0;
+    private int backhandAppoachWinner = 0;
+    private int backhandReturnWinner = 0;
 
     //backhand Forced Errors
-    private int backhandBaselineForcedError;
-    private int backhandDropShotForcedError;
-    private int backhandSmashForcedError;
-    private int backhandVolleyForcedError;
-    private int backhandLobForcedError;
-    private int backhandAppoachForcedError;
-    private int backhandReturnForcedError;
+    private int backhandBaselineForcedError = 0;
+    private int backhandDropShotForcedError = 0;
+    private int backhandSmashForcedError = 0;
+    private int backhandVolleyForcedError = 0;
+    private int backhandLobForcedError = 0;
+    private int backhandAppoachForcedError = 0;
+    private int backhandReturnForcedError = 0;
 
     //backhand Unforced Error
-    private int backhandBaselineUnforcedError;
-    private int backhandDropShotUnforcedError;
-    private int backhandSmashUnforcedError;
-    private int backhandVolleyUnforcedError;
-    private int backhandLobUnforcedError;
-    private int backhandAppoachUnforcedError;
-    private int backhandReturnUnforcedError;
+    private int backhandBaselineUnforcedError = 0;
+    private int backhandDropShotUnforcedError = 0;
+    private int backhandSmashUnforcedError = 0;
+    private int backhandVolleyUnforcedError = 0;
+    private int backhandLobUnforcedError = 0;
+    private int backhandAppoachUnforcedError = 0;
+    private int backhandReturnUnforcedError = 0;
 
     public SetStats(int firstServAce,
                     int secondServAce,

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.marcusac.dk.racketstats.Controller.ScoreController;
 import com.marcusac.dk.racketstats.R;
 
 /**
@@ -26,6 +27,8 @@ public class Scenario_FirstServ_Frag extends Fragment implements View.OnClickLis
     private ImageView iwFootFault;
     private ImageView iwServiceWinner;
     private View root;
+
+    ScoreController scoreController = new ScoreController();
 
 
     public Scenario_FirstServ_Frag() {
@@ -57,6 +60,8 @@ public class Scenario_FirstServ_Frag extends Fragment implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if (v == iwAce) {
+
+            scoreController.updateScoreByAce();
 
            getFragmentManager()
                    .beginTransaction()

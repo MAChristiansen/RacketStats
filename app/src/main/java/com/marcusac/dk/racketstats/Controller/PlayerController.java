@@ -34,10 +34,6 @@ public class PlayerController {
         });
     }
 
-
-    public void savePlayer() {
-    }
-
     public void saveSingleTeam(String playerName) {
 
         ArrayList<String> playerIDs = new ArrayList<>();
@@ -57,7 +53,7 @@ public class PlayerController {
         generateTeam(playerIDs);
     }
 
-    public void createMatch(boolean isMatchSingle) {
+    public void createMatch(int matchForm, int matchType, boolean match3setTiebreak) {
 
         ArrayList<Integer> scorePoints = new ArrayList<>();
         scorePoints.add(0);
@@ -71,9 +67,13 @@ public class PlayerController {
 
         String matchID = dbRefMatch.push().getKey();
 
-        Match match = new Match(matchID, CurrentMatch.currentTeam1ID, CurrentMatch.currentTeam2ID, scorePoints, scoreGames, scoreSets, isMatchSingle);
+        Match match = new Match(matchID, CurrentMatch.currentTeam1ID, CurrentMatch.currentTeam2ID, scorePoints, scoreGames, scoreSets, CurrentMatch.isMatchSingle);
+
+        setMatchFormAndType(match, matchForm, matchType);
+        match.setIs3setMatchTiebreak(match3setTiebreak);
 
         CurrentMatch.currentMatchID = matchID;
+        CurrentMatch.currentMatch = match;
 
         dbRefMatch.child(matchID).setValue(match);
 
@@ -85,6 +85,9 @@ public class PlayerController {
         dbRefPlayer.child(playerID).setValue(newPlayer);
 
         playerIDs.add(playerID);
+
+        CurrentMatch.currentPlayers.add(newPlayer);
+        CurrentMatch.currentPlayerIDs.add(playerID);
     }
 
     private void generateTeam(ArrayList<String> playerIDs) {
@@ -93,6 +96,8 @@ public class PlayerController {
         Team newTeam = new Team(teamID, playerIDs);
         dbRefTeam.child(teamID).setValue(newTeam);
 
+        CurrentMatch.currentTeams.add(newTeam);
+
         if (CurrentMatch.currentTeam1ID == null) {
             CurrentMatch.currentTeam1ID = teamID;
         } else {
@@ -100,5 +105,39 @@ public class PlayerController {
         }
 
     }
+
+    private void setMatchFormAndType(Match match, int matchForm, int matchType) {
+
+        switch (matchForm) {
+            case 1 :
+                match.setMatch1Set(true);
+                break;
+            case 2 :
+                match.setMatch3Set(true);
+                break;
+            case 3 :
+                match.setMatch5Set(true);
+                break;
+            case 4 :
+                match.setMatchTiebreak(true);
+                break;
+            case 5 :
+                match.setMatchMatchTiebreak(true);
+                break;
+        }
+
+        switch (matchType) {
+            case 1:
+                match.setMatchTournamentMatch(true);
+                break;
+            case 2:
+                match.setMatchTeamMatch(true);
+                break;
+            case 3:
+                match.setMatchTrainingMatch(true);
+                break;
+        }
+    }
+
 
 }

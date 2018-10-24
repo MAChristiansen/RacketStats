@@ -17,7 +17,7 @@ public class FirebaseController {
     static DatabaseReference dbRefPlayer = FirebaseDatabase.getInstance().getReference().child("players");
     static DatabaseReference dbRefTeam = FirebaseDatabase.getInstance().getReference().child("teams");
     static DatabaseReference dbRefMatch = FirebaseDatabase.getInstance().getReference().child("matches");
-    //static DatabaseReference dbRefStats = FirebaseDatabase.getInstance().getReference().child("stats");
+    static DatabaseReference dbRefStats = FirebaseDatabase.getInstance().getReference().child("stats");
 
     public Task<DataSnapshot> getTestPlayerData() {
 
@@ -44,6 +44,26 @@ public class FirebaseController {
         final TaskCompletionSource<DataSnapshot> source = new TaskCompletionSource<>();
 
         dbRefMatch.child(matchID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                source.setResult(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                source.setException(databaseError.toException());
+            }
+        });
+
+        return source.getTask();
+
+    }
+
+    public Task<DataSnapshot> getPlayer(String playerID) {
+
+        final TaskCompletionSource<DataSnapshot> source = new TaskCompletionSource<>();
+
+        dbRefPlayer.child(playerID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 source.setResult(dataSnapshot);
