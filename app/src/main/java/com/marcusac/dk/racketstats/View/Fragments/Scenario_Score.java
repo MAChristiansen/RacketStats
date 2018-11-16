@@ -66,16 +66,16 @@ public class Scenario_Score extends Fragment {
         tvScore.setText(scoreController.updateShortScore());
 
         //set set score
-        tvTeam1Sets.setText(CurrentMatch.currentMatch.getScoreSets().get(1).toString());
-        tvTeam2Sets.setText(CurrentMatch.currentMatch.getScoreSets().get(2).toString());
+        tvTeam1Sets.setText(CurrentMatch.currentMatch.getScoreSets().get(0).toString());
+        tvTeam2Sets.setText(CurrentMatch.currentMatch.getScoreSets().get(1).toString());
 
         //set games score
-        tvTeam1Games.setText(CurrentMatch.currentMatch.getScoreGames().get(1).toString());
-        tvTeam2Games.setText(CurrentMatch.currentMatch.getScoreGames().get(2).toString());
+        tvTeam1Games.setText(CurrentMatch.currentMatch.getScoreGames().get(0).toString());
+        tvTeam2Games.setText(CurrentMatch.currentMatch.getScoreGames().get(1).toString());
 
         //set point score
-        tvTeam1Points.setText(scoreController.convertPoints(CurrentMatch.currentMatch.getScorePoints().get(1)).toString());
-        tvTeam1Points.setText(scoreController.convertPoints(CurrentMatch.currentMatch.getScorePoints().get(2)).toString());
+        tvTeam1Points.setText(scoreController.convertPoints(CurrentMatch.currentMatch.getScorePoints().get(0)).toString());
+        tvTeam2Points.setText(scoreController.convertPoints(CurrentMatch.currentMatch.getScorePoints().get(1)).toString());
 
 
 
