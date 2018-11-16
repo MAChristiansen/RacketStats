@@ -11,33 +11,18 @@ import com.marcusac.dk.racketstats.Model.Match;
 
 public class ScoreController {
 
-    public void updateScore(TextView tvTeam1Sets, TextView tvTeam2Sets,
-                            TextView tvTeam1Games, TextView tvTeam2Games,
-                            TextView tvTeam1Points, TextView tvTeam2Points) {
+    public String updateShortScore() {
+
+        String score;
 
         if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
-            tvTeam1Points.setText(CurrentMatch.currentMatch.getScorePoints().get(0).toString());
-            tvTeam2Points.setText(CurrentMatch.currentMatch.getScorePoints().get(1).toString());
+           score = CurrentMatch.currentMatch.getScorePoints().get(0) + " - " + CurrentMatch.currentMatch.getScorePoints().get(1);
+
         } else {
-            tvTeam1Points.setText(convertPoints(CurrentMatch.currentMatch.getScorePoints().get(0)) + "");
-            tvTeam2Points.setText(convertPoints(CurrentMatch.currentMatch.getScorePoints().get(1)) + "");
-            tvTeam1Games.setText(CurrentMatch.currentMatch.getScoreGames().get(0).toString());
-            tvTeam2Games.setText(CurrentMatch.currentMatch.getScoreGames().get(1).toString());
+            score = convertPoints(CurrentMatch.currentMatch.getScorePoints().get(0)) + " - " + convertPoints(CurrentMatch.currentMatch.getScorePoints().get(1));
+
         }
-
-
-    }
-
-    public void updateShortScore(TextView tv1) {
-
-        if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
-            String score = CurrentMatch.currentMatch.getScorePoints().get(0) + " - " + CurrentMatch.currentMatch.getScorePoints().get(1);
-            tv1.setText(score);
-        } else {
-            String score = convertPoints(CurrentMatch.currentMatch.getScorePoints().get(0)) + " - " + convertPoints(CurrentMatch.currentMatch.getScorePoints().get(1));
-            tv1.setText(score);
-        }
-
+        return score;
     }
 
     public void addPoint(int team) {
@@ -92,7 +77,7 @@ public class ScoreController {
         }
     }
 
-    private int convertPoints(int point) {
+    public Integer convertPoints(Integer point) {
         switch (point) {
             case 0:
                 return 0;
