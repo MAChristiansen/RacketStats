@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +35,8 @@ public class Scenario_Score extends Fragment {
     TextView tvTeam2Games;
     TextView tvTeam1Points;
     TextView tvTeam2Points;
+    private ImageView ivTeam2Serving;
+    private ImageView ivTeam1Serving;
 
     public Scenario_Score() {
         // Required empty public constructor
@@ -47,17 +50,22 @@ public class Scenario_Score extends Fragment {
         View root = inflater.inflate(R.layout.fragment_scenario__score, container, false);
 
         tvScore = root.findViewById(R.id.tvScore);
-        /*tvTeam1Sets = root.findViewById(R.id.tvTeam1Points);
-        tvTeam1Sets = root.findViewById(R.id.tvTeam1Sets);
-        tvTeam2Sets = root.findViewById(R.id.tvTeam2Sets);
-        tvTeam1Games = root.findViewById(R.id.tvTeam1Games);
-        tvTeam2Games = root.findViewById(R.id.tvTeam2Games);
-        tvTeam1Points = root.findViewById(R.id.tvTeam1Points);
-        tvTeam2Points = root.findViewById(R.id.tvTeam2Points);*/
+        tvTeam1Sets = getActivity().findViewById(R.id.tvTeam1Points);
+        tvTeam1Sets = getActivity().findViewById(R.id.tvTeam1Sets);
+        tvTeam2Sets = getActivity().findViewById(R.id.tvTeam2Sets);
+        tvTeam1Games = getActivity().findViewById(R.id.tvTeam1Games);
+        tvTeam2Games = getActivity().findViewById(R.id.tvTeam2Games);
+        tvTeam1Points = getActivity().findViewById(R.id.tvTeam1Points);
+        tvTeam2Points = getActivity().findViewById(R.id.tvTeam2Points);
+        ivTeam1Serving = getActivity().findViewById(R.id.ivTeam1Serving);
+        ivTeam2Serving = getActivity().findViewById(R.id.ivTeam2Serving);
+
 
 
         scoreController.updateShortScore(tvScore);
-        //scoreController.updateScore(tvTeam1Sets, tvTeam2Sets, tvTeam1Games, tvTeam2Games, tvTeam1Points, tvTeam2Points);
+        scoreController.updateScore(tvTeam1Sets, tvTeam2Sets, tvTeam1Games, tvTeam2Games, tvTeam1Points, tvTeam2Points);
+
+
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
