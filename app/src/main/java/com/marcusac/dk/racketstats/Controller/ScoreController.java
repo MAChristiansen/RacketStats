@@ -49,7 +49,7 @@ public class ScoreController {
         FirebaseController.dbRefMatch.child(CurrentMatch.currentMatchID).setValue(CurrentMatch.currentMatch);
     }
 
-    public void updateScoreByAce() {
+    public void updateScoreByServ() {
 
         if (CurrentMatch.currentTeams.get(0).isServing()) {
             addPoint(0);
@@ -69,6 +69,31 @@ public class ScoreController {
             } else {
                 if (isGameDone()) {
                     addGame(1);
+                }
+            }
+        }
+    }
+
+    public void updateScoreByDoubleFault() {
+
+        if (CurrentMatch.currentTeams.get(0).isServing()) {
+            addPoint(1);
+
+            if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
+
+            } else {
+                if (isGameDone()) {
+                    addGame(1);
+                }
+            }
+        } else {
+            addPoint(0);
+
+            if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
+
+            } else {
+                if (isGameDone()) {
+                    addGame(0);
                 }
             }
         }

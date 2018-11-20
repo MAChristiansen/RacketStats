@@ -1,15 +1,14 @@
 package com.marcusac.dk.racketstats.View.Fragments;
 
 
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.marcusac.dk.racketstats.Controller.ScoreController;
 import com.marcusac.dk.racketstats.R;
 
 /**
@@ -22,6 +21,8 @@ public class Scenario_SecondServ_Frag extends Fragment implements View.OnClickLi
     ImageView iwIn;
     ImageView iwFootFault;
     ImageView iwServiceWinner;
+
+    ScoreController scoreController = new ScoreController();
 
     public Scenario_SecondServ_Frag() {
         // Required empty public constructor
@@ -53,15 +54,20 @@ public class Scenario_SecondServ_Frag extends Fragment implements View.OnClickLi
     public void onClick(View v) {
         if (v == iwAce) {
 
+            //Ace
+            scoreController.updateScoreByServ();
+
             getFragmentManager()
                     .beginTransaction()
                     .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                     .replace(R.id.fragmentContainer, new Scenario_Score())
                     .commit();
-
         }
 
         else if (v == iwFault) {
+
+            //Double fault
+            scoreController.updateScoreByDoubleFault();
 
             getFragmentManager()
                     .beginTransaction()
@@ -84,6 +90,8 @@ public class Scenario_SecondServ_Frag extends Fragment implements View.OnClickLi
 
         else if (v == iwFootFault) {
 
+            scoreController.updateScoreByDoubleFault();
+
             getFragmentManager()
                     .beginTransaction()
                     .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
@@ -93,6 +101,8 @@ public class Scenario_SecondServ_Frag extends Fragment implements View.OnClickLi
         }
 
         else if (v == iwServiceWinner) {
+
+            scoreController.updateScoreByServ();
 
             getFragmentManager()
                     .beginTransaction()

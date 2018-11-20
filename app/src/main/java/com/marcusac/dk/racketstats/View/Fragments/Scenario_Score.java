@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -61,7 +62,6 @@ public class Scenario_Score extends Fragment {
         ivTeam1Serving = getActivity().findViewById(R.id.ivTeam1Serving);
         ivTeam2Serving = getActivity().findViewById(R.id.ivTeam2Serving);
 
-
         //set big score
         tvScore.setText(scoreController.updateShortScore());
 
@@ -88,14 +88,6 @@ public class Scenario_Score extends Fragment {
                 ivTeam2Serving.setVisibility(View.VISIBLE);
                 break;
         }
-
-
-
-
-
-
-
-
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
