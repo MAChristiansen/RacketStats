@@ -17,18 +17,16 @@ public class ScoreController {
 
         if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
            score = CurrentMatch.currentMatch.getScorePoints().get(0) + " - " + CurrentMatch.currentMatch.getScorePoints().get(1);
-
         } else {
             score = convertPoints(CurrentMatch.currentMatch.getScorePoints().get(0)) + " - " + convertPoints(CurrentMatch.currentMatch.getScorePoints().get(1));
-
         }
+
         return score;
+
     }
 
     public void addPoint(int team) {
-
         CurrentMatch.currentMatch.getScorePoints().set(team, CurrentMatch.currentMatch.getScorePoints().get(team) + 1);
-
     }
 
     public void addGame(int team) {
@@ -40,7 +38,7 @@ public class ScoreController {
         FirebaseController.dbRefMatch.child(CurrentMatch.currentMatchID).setValue(CurrentMatch.currentMatch);
     }
 
-    public void updateScoreByAce(ImageView iv1, ImageView iv2) {
+    public void updateScoreByAce() {
 
         if (CurrentMatch.currentTeams.get(0).isServing()) {
             addPoint(0);
@@ -50,7 +48,6 @@ public class ScoreController {
             } else {
                 if (isGameDone(CurrentMatch.currentMatch.getScorePoints().get(0), CurrentMatch.currentMatch.getScorePoints().get(1))) {
                     addGame(0);
-                    setServingTeam(iv1, iv2);
                 }
             }
         } else {
@@ -61,19 +58,16 @@ public class ScoreController {
             } else {
                 if (isGameDone(CurrentMatch.currentMatch.getScorePoints().get(0), CurrentMatch.currentMatch.getScorePoints().get(1))) {
                     addGame(1);
-                    setServingTeam(iv1, iv2);
                 }
             }
         }
     }
 
-    private void setServingTeam(ImageView iv1, ImageView iv2) {
+    public int setServingTeam() {
         if (CurrentMatch.currentTeams.get(0).isServing()){
-            iv1.setVisibility(View.VISIBLE);
-            iv2.setVisibility(View.INVISIBLE);
+            return 0;
         } else {
-            iv2.setVisibility(View.VISIBLE);
-            iv1.setVisibility(View.INVISIBLE);
+            return 1;
         }
     }
 

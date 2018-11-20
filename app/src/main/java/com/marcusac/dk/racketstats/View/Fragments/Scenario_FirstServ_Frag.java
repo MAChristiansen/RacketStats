@@ -30,8 +30,6 @@ public class Scenario_FirstServ_Frag extends Fragment implements View.OnClickLis
     private View root;
 
     ScoreController scoreController = new ScoreController();
-    private ImageView ivTeam1Serving;
-    private ImageView ivTeam2Serving;
 
 
     public Scenario_FirstServ_Frag() {
@@ -50,8 +48,6 @@ public class Scenario_FirstServ_Frag extends Fragment implements View.OnClickLis
         iwIn = root.findViewById(R.id.iwIn);
         iwFootFault = root.findViewById(R.id.iwFootFault);
         iwServiceWinner = root.findViewById(R.id.iwServiceWinner);
-        ivTeam1Serving = getActivity().findViewById(R.id.ivTeam1Serving);
-        ivTeam2Serving = getActivity().findViewById(R.id.ivTeam2Serving);
 
         iwAce.setOnClickListener(this);
         iwFault.setOnClickListener(this);
@@ -66,7 +62,7 @@ public class Scenario_FirstServ_Frag extends Fragment implements View.OnClickLis
     public void onClick(View v) {
         if (v == iwAce) {
 
-            scoreController.updateScoreByAce(ivTeam1Serving, ivTeam2Serving);
+            scoreController.updateScoreByAce();
 
            getFragmentManager()
                    .beginTransaction()

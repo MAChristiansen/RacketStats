@@ -62,7 +62,7 @@ public class Scenario_Score extends Fragment {
         ivTeam2Serving = getActivity().findViewById(R.id.ivTeam2Serving);
 
 
-
+        //set big score
         tvScore.setText(scoreController.updateShortScore());
 
         //set set score
@@ -76,6 +76,18 @@ public class Scenario_Score extends Fragment {
         //set point score
         tvTeam1Points.setText(scoreController.convertPoints(CurrentMatch.currentMatch.getScorePoints().get(0)).toString());
         tvTeam2Points.setText(scoreController.convertPoints(CurrentMatch.currentMatch.getScorePoints().get(1)).toString());
+
+        //set serving icon
+        switch (scoreController.setServingTeam()) {
+            case 0:
+                ivTeam2Serving.setVisibility(View.INVISIBLE);
+                ivTeam1Serving.setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                ivTeam1Serving.setVisibility(View.INVISIBLE);
+                ivTeam2Serving.setVisibility(View.VISIBLE);
+                break;
+        }
 
 
 
