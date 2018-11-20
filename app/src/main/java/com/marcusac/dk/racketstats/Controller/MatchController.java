@@ -26,22 +26,7 @@ public class MatchController {
 
     public void clearCurrentMatch() {}
 
-
-
-    public void setPlayerNamesToTextViews(TextView tv1, TextView tv2) {
-
-        if (CurrentMatch.isMatchSingle) {
-            tv1.setText(CurrentMatch.currentPlayers.get(0).getName());
-            tv2.setText(CurrentMatch.currentPlayers.get(1).getName());
-
-        } else {
-
-            tv1.setText(CurrentMatch.currentPlayers.get(0).getName() + " / " + CurrentMatch.currentPlayers.get(1).getName());
-            tv2.setText(CurrentMatch.currentPlayers.get(2).getName() + " / " + CurrentMatch.currentPlayers.get(3).getName());
-        }
-
-    }
-
+    //TODO skal måske slettes
     public ArrayList<String> getPlayerNames() {
 
         ArrayList<String> names = new ArrayList<>();
