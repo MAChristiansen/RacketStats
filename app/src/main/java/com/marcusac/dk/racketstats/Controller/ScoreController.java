@@ -18,7 +18,8 @@ public class ScoreController {
         //show the point score
         if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
            score = CurrentMatch.currentMatch.getScorePoints().get(0) + " - " + CurrentMatch.currentMatch.getScorePoints().get(1);
-        } else {
+        }
+        else {
             score = convertPoints(CurrentMatch.currentMatch.getScorePoints().get(0), CurrentMatch.currentMatch.getScorePoints().get(1))
                     + " - "
                     + convertPoints(CurrentMatch.currentMatch.getScorePoints().get(1), CurrentMatch.currentMatch.getScorePoints().get(0));
@@ -58,17 +59,20 @@ public class ScoreController {
 
             if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
 
-            } else {
+            }
+            else {
                 if (isGameDone()) {
                     addGame(0);
                 }
             }
-        } else {
+        }
+        else {
             addPoint(1);
 
             if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
 
-            } else {
+            }
+            else {
                 if (isGameDone()) {
                     addGame(1);
                 }
@@ -83,17 +87,20 @@ public class ScoreController {
 
             if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
 
-            } else {
+            }
+            else {
                 if (isGameDone()) {
                     addGame(1);
                 }
             }
-        } else {
+        }
+        else {
             addPoint(0);
 
             if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
 
-            } else {
+            }
+            else {
                 if (isGameDone()) {
                     addGame(0);
                 }
@@ -110,7 +117,8 @@ public class ScoreController {
                     if (isGameDone()) {
                         addGame(0);
                     }
-                } else {
+                }
+                else {
 
                 }
                 break;
@@ -121,7 +129,8 @@ public class ScoreController {
                     if (isGameDone()) {
                         addGame(1);
                     }
-                } else {
+                }
+                else {
 
                 }
                 break;
@@ -132,13 +141,13 @@ public class ScoreController {
     public int setServingTeam() {
         if (CurrentMatch.currentTeams.get(0).isServing()){
             return 0;
-        } else {
+        }
+        else {
             return 1;
         }
     }
 
     public String convertPoints(Integer point, Integer opponent) {
-
         if (point < 4 && opponent < 4) {
             switch (point) {
                 case 0:
@@ -159,7 +168,6 @@ public class ScoreController {
                 return "40";
             }
         }
-
         return "";
     }
 
@@ -169,16 +177,18 @@ public class ScoreController {
         Log.i("test", CurrentMatch.currentMatch.getScorePoints().get(1) + "");
         if (((CurrentMatch.currentMatch.getScorePoints().get(0) >= 4) && ((CurrentMatch.currentMatch.getScorePoints().get(0) - CurrentMatch.currentMatch.getScorePoints().get(1)) >=2))
                 ||
-                ((CurrentMatch.currentMatch.getScorePoints().get(1) >= 4) && ((CurrentMatch.currentMatch.getScorePoints().get(1) - CurrentMatch.currentMatch.getScorePoints().get(0)) >=2))) {
+            ((CurrentMatch.currentMatch.getScorePoints().get(1) >= 4) && ((CurrentMatch.currentMatch.getScorePoints().get(1) - CurrentMatch.currentMatch.getScorePoints().get(0)) >=2))) {
             if (CurrentMatch.currentTeams.get(0).isServing()){
                 CurrentMatch.currentTeams.get(0).setServing(false);
                 CurrentMatch.currentTeams.get(1).setServing(true);
-            } else {
+            }
+            else {
                 CurrentMatch.currentTeams.get(1).setServing(false);
                 CurrentMatch.currentTeams.get(0).setServing(true);
             }
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     }
