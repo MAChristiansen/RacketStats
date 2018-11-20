@@ -19,7 +19,9 @@ public class ScoreController {
         if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
            score = CurrentMatch.currentMatch.getScorePoints().get(0) + " - " + CurrentMatch.currentMatch.getScorePoints().get(1);
         } else {
-            score = convertPoints(CurrentMatch.currentMatch.getScorePoints().get(0)) + " - " + convertPoints(CurrentMatch.currentMatch.getScorePoints().get(1));
+            score = convertPoints(CurrentMatch.currentMatch.getScorePoints().get(0), CurrentMatch.currentMatch.getScorePoints().get(1))
+                    + " - "
+                    + convertPoints(CurrentMatch.currentMatch.getScorePoints().get(1), CurrentMatch.currentMatch.getScorePoints().get(0));
         }
 
         //if game is done, then show the the game score
@@ -99,6 +101,34 @@ public class ScoreController {
         }
     }
 
+    public void updateScoreByDual(int winningTeam) {
+
+        switch (winningTeam) {
+            case 0:
+                addPoint(0);
+                if (!(CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak())) {
+                    if (isGameDone()) {
+                        addGame(0);
+                    }
+                } else {
+
+                }
+                break;
+
+            case 1:
+                addPoint(1);
+                if (!(CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak())) {
+                    if (isGameDone()) {
+                        addGame(1);
+                    }
+                } else {
+
+                }
+                break;
+        }
+    }
+
+
     public int setServingTeam() {
         if (CurrentMatch.currentTeams.get(0).isServing()){
             return 0;
@@ -107,19 +137,30 @@ public class ScoreController {
         }
     }
 
-    public Integer convertPoints(Integer point) {
-        switch (point) {
-            case 0:
-                return 0;
-            case 1:
-                return 15;
-            case 2:
-                return 30;
-            case 3:
-                return 40;
-            default:
-                return 0;
+    public String convertPoints(Integer point, Integer opponent) {
+
+        if (point < 4 && opponent < 4) {
+            switch (point) {
+                case 0:
+                    return "0";
+                case 1:
+                    return "15";
+                case 2:
+                    return "30";
+                case 3:
+                    return "40";
+            }
         }
+        else {
+            if (point > opponent) {
+                return "AD";
+            }
+            else {
+                return "40";
+            }
+        }
+
+        return "";
     }
 
     private boolean isGameDone() {

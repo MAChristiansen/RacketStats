@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.marcusac.dk.racketstats.Controller.MatchController;
+import com.marcusac.dk.racketstats.Controller.ScoreController;
 import com.marcusac.dk.racketstats.Model.CurrentMatch;
 import com.marcusac.dk.racketstats.R;
 
@@ -23,7 +24,7 @@ public class Scenario_Who_Won_Point_Frag extends Fragment implements View.OnClic
     Button btnTeam1;
     Button btnTeam2;
 
-    MatchController matchController = new MatchController();
+    ScoreController scoreController = new ScoreController();
 
     public Scenario_Who_Won_Point_Frag() {
         // Required empty public constructor
@@ -57,6 +58,8 @@ public class Scenario_Who_Won_Point_Frag extends Fragment implements View.OnClic
     public void onClick(View v) {
         if (v == btnTeam1) {
 
+            scoreController.updateScoreByDual(0);
+
             getFragmentManager()
                     .beginTransaction()
                     .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
@@ -66,6 +69,8 @@ public class Scenario_Who_Won_Point_Frag extends Fragment implements View.OnClic
         }
 
         else if (v == btnTeam2) {
+
+            scoreController.updateScoreByDual(1);
 
             getFragmentManager()
                     .beginTransaction()
