@@ -72,8 +72,15 @@ public class Match_Act extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, fragment).commit();
         }
 
-        matchController.updateScoreBoardScore(tvTeam1Sets, tvTeam2Sets, tvTeam1Games, tvTeam2Games, tvTeam1Points, tvTeam2Points, tvSets, tvGames);
-        matchController.setPlayerNamesToTextViews(tvTeam1Names, tvTeam2Names);
+        if (CurrentMatch.isMatchSingle) {
+            tvTeam1Names.setText(CurrentMatch.currentPlayers.get(0).getName());
+            tvTeam2Names.setText(CurrentMatch.currentPlayers.get(1).getName());
+        } else {
+            tvTeam1Names.setText(CurrentMatch.currentPlayers.get(0).getName() + " / " + CurrentMatch.currentPlayers.get(1).getName());
+            tvTeam2Names.setText(CurrentMatch.currentPlayers.get(2).getName() + " / " + CurrentMatch.currentPlayers.get(3).getName());
+        }
+
+        setScoreBoard(tvTeam1Sets, tvTeam2Sets, tvTeam1Games, tvTeam2Games, tvTeam1Points, tvTeam2Points, tvSets, tvGames);
         matchController.whoStartsServing(this, ivTeam1Serving, ivTeam2Serving);
 
 
@@ -114,6 +121,52 @@ public class Match_Act extends AppCompatActivity {
         });
 
         alertConfirm.create().show();
+    }
+
+    private void setScoreBoard(
+            TextView tvTeam1Sets, TextView tvTeam2Sets,
+            TextView tvTeam1Games, TextView tvTeam2Games,
+            TextView tvTeam1Points, TextView tvTeam2Points,
+            TextView tvSets, TextView tvGames) {
+
+        if (CurrentMatch.currentMatch.isMatchMatchTiebreak() || CurrentMatch.currentMatch.isMatchTiebreak()) {
+
+            tvTeam1Points.setText(CurrentMatch.currentMatch.getScorePoints().get(0).toString());
+            tvTeam2Points.setText(CurrentMatch.currentMatch.getScorePoints().get(1).toString());
+
+            tvTeam1Games.setVisibility(View.GONE);
+            tvTeam2Games.setVisibility(View.GONE);
+            tvGames.setVisibility(View.GONE);
+
+            tvTeam1Sets.setVisibility(View.GONE);
+            tvTeam2Sets.setVisibility(View.GONE);
+            tvSets.setVisibility(View.GONE);
+
+        }
+        else if (CurrentMatch.currentMatch.isMatch1Set()) {
+
+            tvTeam1Sets.setText(CurrentMatch.currentMatch.getScoreSets().get(0).toString());
+            tvTeam2Sets.setText(CurrentMatch.currentMatch.getScoreSets().get(1).toString());
+
+            tvTeam1Games.setText(CurrentMatch.currentMatch.getScoreGames().get(0).toString());
+            tvTeam2Games.setText(CurrentMatch.currentMatch.getScoreGames().get(1).toString());
+
+            tvTeam1Sets.setVisibility(View.GONE);
+            tvTeam2Sets.setVisibility(View.GONE);
+            tvSets.setVisibility(View.GONE);
+
+        } else {
+
+            tvTeam1Sets.setText(CurrentMatch.currentMatch.getScoreSets().get(0).toString());
+            tvTeam2Sets.setText(CurrentMatch.currentMatch.getScoreSets().get(1).toString());
+
+            tvTeam1Games.setText(CurrentMatch.currentMatch.getScoreGames().get(0).toString());
+            tvTeam2Games.setText(CurrentMatch.currentMatch.getScoreGames().get(1).toString());
+
+            tvTeam1Points.setText(CurrentMatch.currentMatch.getScorePoints().get(0).toString());
+            tvTeam2Points.setText(CurrentMatch.currentMatch.getScorePoints().get(1).toString());
+        }
+
     }
 
 

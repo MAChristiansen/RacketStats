@@ -11,39 +11,33 @@ import com.marcusac.dk.racketstats.Model.Match;
 
 public class ScoreController {
 
-    public void updateScore(TextView tvTeam1Sets, TextView tvTeam2Sets,
-                            TextView tvTeam1Games, TextView tvTeam2Games,
-                            TextView tvTeam1Points, TextView tvTeam2Points) {
+    public String updateShortScore() {
 
+        String score;
+
+        //show the point score
         if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
-            tvTeam1Points.setText(CurrentMatch.currentMatch.getScorePoints().get(0).toString());
-            tvTeam2Points.setText(CurrentMatch.currentMatch.getScorePoints().get(1).toString());
+           score = CurrentMatch.currentMatch.getScorePoints().get(0) + " - " + CurrentMatch.currentMatch.getScorePoints().get(1);
         } else {
-            tvTeam1Points.setText(convertPoints(CurrentMatch.currentMatch.getScorePoints().get(0)) + "");
-            tvTeam2Points.setText(convertPoints(CurrentMatch.currentMatch.getScorePoints().get(1)) + "");
-            tvTeam1Games.setText(CurrentMatch.currentMatch.getScoreGames().get(0).toString());
-            tvTeam2Games.setText(CurrentMatch.currentMatch.getScoreGames().get(1).toString());
+            score = convertPoints(CurrentMatch.currentMatch.getScorePoints().get(0)) + " - " + convertPoints(CurrentMatch.currentMatch.getScorePoints().get(1));
         }
 
-
-    }
-
-    public void updateShortScore(TextView tv1) {
-
-        if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
-            String score = CurrentMatch.currentMatch.getScorePoints().get(0) + " - " + CurrentMatch.currentMatch.getScorePoints().get(1);
-            tv1.setText(score);
-        } else {
-            String score = convertPoints(CurrentMatch.currentMatch.getScorePoints().get(0)) + " - " + convertPoints(CurrentMatch.currentMatch.getScorePoints().get(1));
-            tv1.setText(score);
+        //if game is done, then show the the game score
+        if (score.equals("0 - 0")) {
+            score = CurrentMatch.currentMatch.getScoreGames().get(0) + " - " + CurrentMatch.currentMatch.getScoreGames().get(1);
         }
+
+        //if set is done, the show the set score
+        if (score.equals("0 - 0")) {
+            score = CurrentMatch.currentMatch.getScoreSets().get(0) + " - " + CurrentMatch.currentMatch.getScoreSets().get(1);
+        }
+
+        return score;
 
     }
 
     public void addPoint(int team) {
-
         CurrentMatch.currentMatch.getScorePoints().set(team, CurrentMatch.currentMatch.getScorePoints().get(team) + 1);
-
     }
 
     public void addGame(int team) {
@@ -55,7 +49,7 @@ public class ScoreController {
         FirebaseController.dbRefMatch.child(CurrentMatch.currentMatchID).setValue(CurrentMatch.currentMatch);
     }
 
-    public void updateScoreByAce(ImageView iv1, ImageView iv2) {
+    public void updateScoreByAce() {
 
         if (CurrentMatch.currentTeams.get(0).isServing()) {
             addPoint(0);
@@ -63,9 +57,8 @@ public class ScoreController {
             if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
 
             } else {
-                if (isGameDone(CurrentMatch.currentMatch.getScorePoints().get(0), CurrentMatch.currentMatch.getScorePoints().get(1))) {
+                if (isGameDone()) {
                     addGame(0);
-                    setServingTeam(iv1, iv2);
                 }
             }
         } else {
@@ -74,25 +67,22 @@ public class ScoreController {
             if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
 
             } else {
-                if (isGameDone(CurrentMatch.currentMatch.getScorePoints().get(0), CurrentMatch.currentMatch.getScorePoints().get(1))) {
+                if (isGameDone()) {
                     addGame(1);
-                    setServingTeam(iv1, iv2);
                 }
             }
         }
     }
 
-    private void setServingTeam(ImageView iv1, ImageView iv2) {
+    public int setServingTeam() {
         if (CurrentMatch.currentTeams.get(0).isServing()){
-            iv1.setVisibility(View.VISIBLE);
-            iv2.setVisibility(View.INVISIBLE);
+            return 0;
         } else {
-            iv2.setVisibility(View.VISIBLE);
-            iv1.setVisibility(View.INVISIBLE);
+            return 1;
         }
     }
 
-    private int convertPoints(int point) {
+    public Integer convertPoints(Integer point) {
         switch (point) {
             case 0:
                 return 0;
@@ -107,11 +97,13 @@ public class ScoreController {
         }
     }
 
-    private boolean isGameDone(int team1Score, int team2Score) {
+    private boolean isGameDone() {
 
-        Log.i("test", team1Score + "");
-        Log.i("test", team2Score + "");
-        if (((team1Score >= 4) && ((team1Score - team2Score) >=2)) || ((team2Score >= 4) && ((team2Score - team1Score) >=2))) {
+        Log.i("test", CurrentMatch.currentMatch.getScorePoints().get(0) + "");
+        Log.i("test", CurrentMatch.currentMatch.getScorePoints().get(1) + "");
+        if (((CurrentMatch.currentMatch.getScorePoints().get(0) >= 4) && ((CurrentMatch.currentMatch.getScorePoints().get(0) - CurrentMatch.currentMatch.getScorePoints().get(1)) >=2))
+                ||
+                ((CurrentMatch.currentMatch.getScorePoints().get(1) >= 4) && ((CurrentMatch.currentMatch.getScorePoints().get(1) - CurrentMatch.currentMatch.getScorePoints().get(0)) >=2))) {
             if (CurrentMatch.currentTeams.get(0).isServing()){
                 CurrentMatch.currentTeams.get(0).setServing(false);
                 CurrentMatch.currentTeams.get(1).setServing(true);
@@ -124,10 +116,5 @@ public class ScoreController {
             return false;
         }
     }
-
-
-
-
-
 
 }

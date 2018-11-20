@@ -67,7 +67,13 @@ public class PlayerController {
 
         String matchID = dbRefMatch.push().getKey();
 
-        Match match = new Match(matchID, CurrentMatch.currentTeam1ID, CurrentMatch.currentTeam2ID, scorePoints, scoreGames, scoreSets, CurrentMatch.isMatchSingle);
+        Match match = new Match(matchID,
+                                CurrentMatch.currentTeam1ID,
+                                CurrentMatch.currentTeam2ID,
+                                scorePoints,
+                                scoreGames,
+                                scoreSets,
+                                CurrentMatch.isMatchSingle);
 
         setMatchFormAndType(match, matchForm, matchType);
         match.setIs3setMatchTiebreak(match3setTiebreak);
