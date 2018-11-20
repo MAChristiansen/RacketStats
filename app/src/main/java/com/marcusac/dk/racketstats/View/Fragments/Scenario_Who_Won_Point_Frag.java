@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.marcusac.dk.racketstats.Controller.MatchController;
+import com.marcusac.dk.racketstats.Model.CurrentMatch;
 import com.marcusac.dk.racketstats.R;
 
 /**
@@ -41,7 +42,13 @@ public class Scenario_Who_Won_Point_Frag extends Fragment implements View.OnClic
         btnTeam1.setOnClickListener(this);
         btnTeam2.setOnClickListener(this);
 
-        matchController.setPlayerNamesToBtns(btnTeam1, btnTeam2);
+        if (CurrentMatch.isMatchSingle) {
+            btnTeam1.setText(CurrentMatch.currentPlayers.get(0).getName());
+            btnTeam2.setText(CurrentMatch.currentPlayers.get(1).getName());
+        } else {
+            btnTeam1.setText(CurrentMatch.currentPlayers.get(0).getName() + " / " + CurrentMatch.currentPlayers.get(1).getName());
+            btnTeam2.setText(CurrentMatch.currentPlayers.get(2).getName() + " / " + CurrentMatch.currentPlayers.get(3).getName());
+        }
 
         return root;
     }
