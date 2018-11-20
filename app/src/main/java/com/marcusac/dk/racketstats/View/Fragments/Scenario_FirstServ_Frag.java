@@ -3,15 +3,11 @@ package com.marcusac.dk.racketstats.View.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 import com.marcusac.dk.racketstats.Controller.ScoreController;
 import com.marcusac.dk.racketstats.R;
 
@@ -62,7 +58,7 @@ public class Scenario_FirstServ_Frag extends Fragment implements View.OnClickLis
     public void onClick(View v) {
         if (v == iwAce) {
 
-            scoreController.updateScoreByAce();
+            scoreController.updateScoreByServ();
 
            getFragmentManager()
                    .beginTransaction()
@@ -107,6 +103,8 @@ public class Scenario_FirstServ_Frag extends Fragment implements View.OnClickLis
         }
 
         else if (v == iwServiceWinner) {
+
+            scoreController.updateScoreByServ();
 
             getFragmentManager()
                     .beginTransaction()
