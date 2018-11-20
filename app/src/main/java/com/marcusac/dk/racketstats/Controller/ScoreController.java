@@ -221,7 +221,7 @@ public class ScoreController {
         }
     }
 
-
+    //TODO skal laves så der kan blive spillet tiebreak
     private boolean isSetDone() {
         Log.i("Set gameScore", CurrentMatch.currentMatch.getScoreGames().get(0)
                 + " "
