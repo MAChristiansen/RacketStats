@@ -41,6 +41,8 @@ public class ScoreController {
 
     public void addPoint(int team) {
         CurrentMatch.currentMatch.getScorePoints().set(team, CurrentMatch.currentMatch.getScorePoints().get(team) + 1);
+
+        FirebaseController.dbRefMatch.child(CurrentMatch.currentMatchID).setValue(CurrentMatch.currentMatch);
     }
 
     public void addGame(int team) {
@@ -48,6 +50,14 @@ public class ScoreController {
         CurrentMatch.currentMatch.getScoreGames().set(team, CurrentMatch.currentMatch.getScoreGames().get(team) + 1);
         CurrentMatch.currentMatch.getScorePoints().set(0,0);
         CurrentMatch.currentMatch.getScorePoints().set(1,0);
+
+        FirebaseController.dbRefMatch.child(CurrentMatch.currentMatchID).setValue(CurrentMatch.currentMatch);
+    }
+
+    public void addSet(int team) {
+        CurrentMatch.currentMatch.getScoreSets().set(team, CurrentMatch.currentMatch.getScoreSets().get(team) + 1);
+        CurrentMatch.currentMatch.getScoreGames().set(0,0);
+        CurrentMatch.currentMatch.getScoreGames().set(1,0);
 
         FirebaseController.dbRefMatch.child(CurrentMatch.currentMatchID).setValue(CurrentMatch.currentMatch);
     }
@@ -63,6 +73,9 @@ public class ScoreController {
             else {
                 if (isGameDone()) {
                     addGame(0);
+                    if (isSetDone()) {
+                        addSet(0);
+                    }
                 }
             }
         }
@@ -75,6 +88,9 @@ public class ScoreController {
             else {
                 if (isGameDone()) {
                     addGame(1);
+                    if (isSetDone()) {
+                        addSet(1);
+                    }
                 }
             }
         }
@@ -91,6 +107,9 @@ public class ScoreController {
             else {
                 if (isGameDone()) {
                     addGame(1);
+                    if (isSetDone()) {
+                        addSet(1);
+                    }
                 }
             }
         }
@@ -103,6 +122,9 @@ public class ScoreController {
             else {
                 if (isGameDone()) {
                     addGame(0);
+                    if (isSetDone()) {
+                        addSet(0);
+                    }
                 }
             }
         }
@@ -116,6 +138,9 @@ public class ScoreController {
                 if (!(CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak())) {
                     if (isGameDone()) {
                         addGame(0);
+                        if (isSetDone()) {
+                            addSet(0);
+                        }
                     }
                 }
                 else {
@@ -128,6 +153,9 @@ public class ScoreController {
                 if (!(CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak())) {
                     if (isGameDone()) {
                         addGame(1);
+                        if (isSetDone()) {
+                            addSet(1);
+                        }
                     }
                 }
                 else {
@@ -191,6 +219,19 @@ public class ScoreController {
         else {
             return false;
         }
+    }
+
+
+    private boolean isSetDone() {
+        Log.i("Set gameScore", CurrentMatch.currentMatch.getScoreGames().get(0)
+                + " "
+                + CurrentMatch.currentMatch.getScoreGames().get(1));
+        if (((CurrentMatch.currentMatch.getScoreGames().get(0) == 6) && ((CurrentMatch.currentMatch.getScoreGames().get(0) - CurrentMatch.currentMatch.getScoreGames().get(1)) >=2 ))
+            ||
+            ((CurrentMatch.currentMatch.getScoreGames().get(1) == 6) && ((CurrentMatch.currentMatch.getScoreGames().get(1) - CurrentMatch.currentMatch.getScoreGames().get(0)) >=2))) {
+            return true;
+        }
+        return false;
     }
 
 }
