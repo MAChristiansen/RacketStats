@@ -15,14 +15,21 @@ public class ScoreController {
 
         String score;
 
+        //show the point score
         if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
            score = CurrentMatch.currentMatch.getScorePoints().get(0) + " - " + CurrentMatch.currentMatch.getScorePoints().get(1);
         } else {
             score = convertPoints(CurrentMatch.currentMatch.getScorePoints().get(0)) + " - " + convertPoints(CurrentMatch.currentMatch.getScorePoints().get(1));
         }
 
+        //if game is done, then show the the game score
         if (score.equals("0 - 0")) {
             score = CurrentMatch.currentMatch.getScoreGames().get(0) + " - " + CurrentMatch.currentMatch.getScoreGames().get(1);
+        }
+
+        //if set is done, the show the set score
+        if (score.equals("0 - 0")) {
+            score = CurrentMatch.currentMatch.getScoreSets().get(0) + " - " + CurrentMatch.currentMatch.getScoreSets().get(1);
         }
 
         return score;
