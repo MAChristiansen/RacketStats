@@ -102,7 +102,7 @@ public class Scenario_Score extends Fragment {
             public void run() {
                 getFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
-        }, 1500);
+        }, 1200);
 
         return root;
     }
