@@ -98,7 +98,7 @@ public class Scenario_Score extends Fragment {
             public void run() {
                 if (getFragmentManager().getBackStackEntryCount() > 0) {
                     getFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                    SystemClock.sleep(500);
+                    SystemClock.sleep(600);
                 }
             }
         }, 700);
