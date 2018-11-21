@@ -50,9 +50,11 @@ public class MatchController {
                             if (which == 0) {
                                 CurrentMatch.currentTeams.get(0).setServing(true);
                                 CurrentMatch.currentPlayers.get(0).setServing(true);
+                                CurrentMatch.currentMatch.setStartedServing(0);
                             } else {
                                 CurrentMatch.currentTeams.get(1).setServing(true);
                                 CurrentMatch.currentPlayers.get(1).setServing(true);
+                                CurrentMatch.currentMatch.setStartedServing(1);
                             }
 
                             if (CurrentMatch.currentTeams.get(0).isServing()) {
@@ -63,6 +65,7 @@ public class MatchController {
                         } else {
                             if (which == 0 || which == 1) {
                                 CurrentMatch.currentTeams.get(0).setServing(true);
+                                CurrentMatch.currentMatch.setStartedServing(0);
                                 if (which == 0) {
                                     CurrentMatch.currentPlayers.get(0).setServing(true);
                                 } else {
@@ -76,6 +79,7 @@ public class MatchController {
                                 }
                             } else {
                                 CurrentMatch.currentTeams.get(1).setServing(true);
+                                CurrentMatch.currentMatch.setStartedServing(1);
                                 if (which == 2) {
                                     CurrentMatch.currentPlayers.get(2).setServing(true);
                                 } else {
