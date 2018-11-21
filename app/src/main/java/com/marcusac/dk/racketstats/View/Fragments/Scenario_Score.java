@@ -74,8 +74,11 @@ public class Scenario_Score extends Fragment {
         tvTeam2Games.setText(CurrentMatch.currentMatch.getScoreGames().get(1).toString());
 
         //set point score
-        tvTeam1Points.setText(scoreController.convertPoints(CurrentMatch.currentMatch.getScorePoints().get(0)).toString());
-        tvTeam2Points.setText(scoreController.convertPoints(CurrentMatch.currentMatch.getScorePoints().get(1)).toString());
+        tvTeam1Points.setText(scoreController.convertPoints(CurrentMatch.currentMatch.getScorePoints().get(0),
+                                                            CurrentMatch.currentMatch.getScorePoints().get(1)));
+
+        tvTeam2Points.setText(scoreController.convertPoints(CurrentMatch.currentMatch.getScorePoints().get(1),
+                                                            CurrentMatch.currentMatch.getScorePoints().get(0)));
 
         //set serving icon
         switch (scoreController.setServingTeam()) {
@@ -92,7 +95,9 @@ public class Scenario_Score extends Fragment {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                getFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                if (getFragmentManager().getBackStackEntryCount() > 0) {
+                    getFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                }
             }
         }, 1200);
 
