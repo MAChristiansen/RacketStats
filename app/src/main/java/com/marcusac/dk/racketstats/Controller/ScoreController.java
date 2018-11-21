@@ -1,5 +1,6 @@
 package com.marcusac.dk.racketstats.Controller;
 
+import android.database.CursorIndexOutOfBoundsException;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,7 @@ public class ScoreController {
         String score;
 
         //show the point score
-        if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
+        if (CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak() || isSetTiebreak()) {
            score = CurrentMatch.currentMatch.getScorePoints().get(0) + " - " + CurrentMatch.currentMatch.getScorePoints().get(1);
         }
         else {
@@ -71,7 +72,15 @@ public class ScoreController {
 
             }
             else {
-                if (isGameDone()) {
+                if (isSetTiebreak()) {
+                    switchServingTeam();
+                    if (isTiebreakDone()) {
+                        addGame(0);
+                        setServingTeamAfterTiebreak();
+                        addSet(0);
+                    }
+                }
+                else if (isGameDone()) {
                     addGame(0);
                     if (isSetDone()) {
                         addSet(0);
@@ -86,7 +95,15 @@ public class ScoreController {
 
             }
             else {
-                if (isGameDone()) {
+                if (isSetTiebreak()) {
+                    switchServingTeam();
+                    if (isTiebreakDone()) {
+                        addGame(1);
+                        setServingTeamAfterTiebreak();
+                        addSet(1);
+                    }
+                }
+                else if (isGameDone()) {
                     addGame(1);
                     if (isSetDone()) {
                         addSet(1);
@@ -105,10 +122,18 @@ public class ScoreController {
 
             }
             else {
-                if (isGameDone()) {
-                    addGame(1);
+                if (isSetTiebreak()) {
+                    switchServingTeam();
+                    if (isTiebreakDone()) {
+                        addGame(0);
+                        setServingTeamAfterTiebreak();
+                        addSet(0);
+                    }
+                }
+                else if (isGameDone()) {
+                    addGame(0);
                     if (isSetDone()) {
-                        addSet(1);
+                        addSet(0);
                     }
                 }
             }
@@ -120,10 +145,18 @@ public class ScoreController {
 
             }
             else {
-                if (isGameDone()) {
-                    addGame(0);
+                if (isSetTiebreak()) {
+                    switchServingTeam();
+                    if (isTiebreakDone()) {
+                        addGame(1);
+                        setServingTeamAfterTiebreak();
+                        addSet(1);
+                    }
+                }
+                else if (isGameDone()) {
+                    addGame(1);
                     if (isSetDone()) {
-                        addSet(0);
+                        addSet(1);
                     }
                 }
             }
@@ -132,37 +165,27 @@ public class ScoreController {
 
     public void updateScoreByDual(int winningTeam) {
 
-        switch (winningTeam) {
-            case 0:
-                addPoint(0);
-                if (!(CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak())) {
-                    if (isGameDone()) {
-                        addGame(0);
-                        if (isSetDone()) {
-                            addSet(0);
-                        }
-                    }
+        addPoint(winningTeam);
+        if (!(CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak())) {
+            if (isSetTiebreak()) {
+                switchServingTeam();
+                if (isTiebreakDone()) {
+                    addGame(winningTeam);
+                    setServingTeamAfterTiebreak();
+                    addSet(winningTeam);
                 }
-                else {
-
+            }
+            else if (isGameDone()) {
+                addGame(winningTeam);
+                if (isSetDone()) {
+                    addSet(winningTeam);
                 }
-                break;
-
-            case 1:
-                addPoint(1);
-                if (!(CurrentMatch.currentMatch.isMatchTiebreak() || CurrentMatch.currentMatch.isMatchMatchTiebreak())) {
-                    if (isGameDone()) {
-                        addGame(1);
-                        if (isSetDone()) {
-                            addSet(1);
-                        }
-                    }
-                }
-                else {
-
-                }
-                break;
+            }
         }
+        else {
+
+        }
+
     }
 
 
@@ -172,6 +195,20 @@ public class ScoreController {
         }
         else {
             return 1;
+        }
+    }
+
+    public void setServingTeamAfterTiebreak() {
+        if (((CurrentMatch.currentMatch.getScoreGames().get(0) + CurrentMatch.currentMatch.getScoreGames().get(1)) % 2) == 0) {
+            switch (CurrentMatch.currentMatch.getStartedServing()) {
+                case 0:
+                    CurrentMatch.currentTeams.get(0).setServing(false);
+                    CurrentMatch.currentTeams.get(1).setServing(true);
+                    break;
+                case 1:
+                    CurrentMatch.currentTeams.get(1).setServing(false);
+                    CurrentMatch.currentTeams.get(0).setServing(true);
+            }
         }
     }
 
@@ -221,17 +258,56 @@ public class ScoreController {
         }
     }
 
+    private boolean isTiebreakDone() {
+        if (((CurrentMatch.currentMatch.getScorePoints().get(0) >= 7) && (CurrentMatch.currentMatch.getScorePoints().get(0) - CurrentMatch.currentMatch.getScorePoints().get(1) >= 2))
+                ||
+            ((CurrentMatch.currentMatch.getScorePoints().get(1) >= 7) && (CurrentMatch.currentMatch.getScorePoints().get(1) - CurrentMatch.currentMatch.getScorePoints().get(0) >= 2))) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    private void switchServingTeam() {
+        Log.i("modulo", (CurrentMatch.currentMatch.getScorePoints().get(0) + CurrentMatch.currentMatch.getScorePoints().get(1)) % 2 + "");
+        if ((((CurrentMatch.currentMatch.getScorePoints().get(0) + CurrentMatch.currentMatch.getScorePoints().get(1)) % 2) == 1)) {
+            if (CurrentMatch.currentTeams.get(0).isServing()){
+                CurrentMatch.currentTeams.get(0).setServing(false);
+                CurrentMatch.currentTeams.get(1).setServing(true);
+            }
+            else {
+                CurrentMatch.currentTeams.get(1).setServing(false);
+                CurrentMatch.currentTeams.get(0).setServing(true);
+            }
+        }
+    }
+
     //TODO skal laves så der kan blive spillet tiebreak
     private boolean isSetDone() {
         Log.i("Set gameScore", CurrentMatch.currentMatch.getScoreGames().get(0)
                 + " "
                 + CurrentMatch.currentMatch.getScoreGames().get(1));
-        if (((CurrentMatch.currentMatch.getScoreGames().get(0) == 6) && ((CurrentMatch.currentMatch.getScoreGames().get(0) - CurrentMatch.currentMatch.getScoreGames().get(1)) >=2))
+        if (((CurrentMatch.currentMatch.getScoreGames().get(0) >= 6) && ((CurrentMatch.currentMatch.getScoreGames().get(0) - CurrentMatch.currentMatch.getScoreGames().get(1)) >=2))
             ||
-            ((CurrentMatch.currentMatch.getScoreGames().get(1) == 6) && ((CurrentMatch.currentMatch.getScoreGames().get(1) - CurrentMatch.currentMatch.getScoreGames().get(0)) >=2))) {
+            ((CurrentMatch.currentMatch.getScoreGames().get(1) >= 6) && ((CurrentMatch.currentMatch.getScoreGames().get(1) - CurrentMatch.currentMatch.getScoreGames().get(0)) >=2))) {
             return true;
         }
+        else if (isSetTiebreak()) {
+            if (isTiebreakDone()) {
+                return true;
+            }
+        }
         return false;
+    }
+
+    public boolean isSetTiebreak() {
+        if (CurrentMatch.currentMatch.getScoreGames().get(0) + CurrentMatch.currentMatch.getScoreGames().get(1) == 12) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 }

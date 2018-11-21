@@ -12,6 +12,7 @@ public class Match {
     private ArrayList<Integer> scoreGames;
     private ArrayList<Integer> scoreSets;
 
+    private int startedServing;
 
     private boolean isMatchTiebreak = false;
     private boolean isMatchMatchTiebreak = false;
@@ -189,5 +190,13 @@ public class Match {
 
     public void setMatchTrainingMatch(boolean matchTrainingMatch) {
         isMatchTrainingMatch = matchTrainingMatch;
+    }
+
+    public int getStartedServing() {
+        return startedServing;
+    }
+
+    public void setStartedServing(int startedServing) {
+        this.startedServing = startedServing;
     }
 }
