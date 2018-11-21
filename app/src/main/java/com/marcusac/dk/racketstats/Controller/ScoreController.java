@@ -226,7 +226,7 @@ public class ScoreController {
         Log.i("Set gameScore", CurrentMatch.currentMatch.getScoreGames().get(0)
                 + " "
                 + CurrentMatch.currentMatch.getScoreGames().get(1));
-        if (((CurrentMatch.currentMatch.getScoreGames().get(0) == 6) && ((CurrentMatch.currentMatch.getScoreGames().get(0) - CurrentMatch.currentMatch.getScoreGames().get(1)) >=2 ))
+        if (((CurrentMatch.currentMatch.getScoreGames().get(0) == 6) && ((CurrentMatch.currentMatch.getScoreGames().get(0) - CurrentMatch.currentMatch.getScoreGames().get(1)) >=2))
             ||
             ((CurrentMatch.currentMatch.getScoreGames().get(1) == 6) && ((CurrentMatch.currentMatch.getScoreGames().get(1) - CurrentMatch.currentMatch.getScoreGames().get(0)) >=2))) {
             return true;
