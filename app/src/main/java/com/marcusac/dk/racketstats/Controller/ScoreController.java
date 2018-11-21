@@ -236,6 +236,15 @@ public class ScoreController {
         return "";
     }
 
+    public boolean isSetTiebreak() {
+        if (CurrentMatch.currentMatch.getScoreGames().get(0) + CurrentMatch.currentMatch.getScoreGames().get(1) == 12) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     private boolean isGameDone() {
 
         Log.i("test", CurrentMatch.currentMatch.getScorePoints().get(0) + "");
@@ -300,14 +309,4 @@ public class ScoreController {
         }
         return false;
     }
-
-    public boolean isSetTiebreak() {
-        if (CurrentMatch.currentMatch.getScoreGames().get(0) + CurrentMatch.currentMatch.getScoreGames().get(1) == 12) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
 }
