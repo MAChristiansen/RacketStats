@@ -84,6 +84,14 @@ public class Scenario_Score extends Fragment {
                 tvTeam1Games.setText(CurrentMatch.currentMatch.getScoreGames().get(4).toString());
                 tvTeam2Games.setText(CurrentMatch.currentMatch.getScoreGames().get(5).toString());
                 break;
+            case 4:
+                tvTeam1Games.setText(CurrentMatch.currentMatch.getScoreGames().get(6).toString());
+                tvTeam2Games.setText(CurrentMatch.currentMatch.getScoreGames().get(7).toString());
+                break;
+            case 5:
+                tvTeam1Games.setText(CurrentMatch.currentMatch.getScoreGames().get(8).toString());
+                tvTeam2Games.setText(CurrentMatch.currentMatch.getScoreGames().get(9).toString());
+                break;
         }
 
 

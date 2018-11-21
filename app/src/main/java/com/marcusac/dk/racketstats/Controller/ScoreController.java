@@ -39,6 +39,12 @@ public class ScoreController {
                 case 3:
                     score = CurrentMatch.currentMatch.getScoreGames().get(4) + " - " + CurrentMatch.currentMatch.getScoreGames().get(5);
                     break;
+                case 4:
+                    score = CurrentMatch.currentMatch.getScoreGames().get(6) + " - " + CurrentMatch.currentMatch.getScoreGames().get(7);
+                    break;
+                case 5:
+                    score = CurrentMatch.currentMatch.getScoreGames().get(8) + " - " + CurrentMatch.currentMatch.getScoreGames().get(9);
+                    break;
             }
         }
 
@@ -76,7 +82,12 @@ public class ScoreController {
                 Log.i("test", "score3: " + (CurrentMatch.currentMatch.getScoreGames().get(team + 4) + 1) + "");
                 CurrentMatch.currentMatch.getScoreGames().set(team + 4, CurrentMatch.currentMatch.getScoreGames().get(team + 4) + 1);
                 break;
-
+            case 4:
+                CurrentMatch.currentMatch.getScoreGames().set(team + 6, CurrentMatch.currentMatch.getScoreGames().get(team + 6) + 1);
+                break;
+            case 5:
+                CurrentMatch.currentMatch.getScoreGames().set(team + 8, CurrentMatch.currentMatch.getScoreGames().get(team + 8) + 1);
+                break;
         }
 
         CurrentMatch.currentMatch.getScorePoints().set(0,0);
