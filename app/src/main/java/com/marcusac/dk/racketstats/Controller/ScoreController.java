@@ -28,7 +28,18 @@ public class ScoreController {
 
         //if game is done, then show the the game score
         if (score.equals("0 - 0")) {
-            score = CurrentMatch.currentMatch.getScoreGames().get(0) + " - " + CurrentMatch.currentMatch.getScoreGames().get(1);
+            switch (CurrentMatch.currentMatch.getScoreGames().size() / 2) {
+
+                case 1:
+                    score = CurrentMatch.currentMatch.getScoreGames().get(0) + " - " + CurrentMatch.currentMatch.getScoreGames().get(1);
+                    break;
+                case 2:
+                    score = CurrentMatch.currentMatch.getScoreGames().get(2) + " - " + CurrentMatch.currentMatch.getScoreGames().get(3);
+                    break;
+                case 3:
+                    score = CurrentMatch.currentMatch.getScoreGames().get(4) + " - " + CurrentMatch.currentMatch.getScoreGames().get(5);
+                    break;
+            }
         }
 
         //if set is done, the show the set score
@@ -47,8 +58,27 @@ public class ScoreController {
     }
 
     public void addGame(int team) {
-        Log.i("test", "jeg er her");
-        CurrentMatch.currentMatch.getScoreGames().set(team, CurrentMatch.currentMatch.getScoreGames().get(team) + 1);
+
+        switch (CurrentMatch.currentMatch.getScoreGames().size() / 2) {
+
+            case 1:
+                Log.i("test", "index1: " + team + "");
+                Log.i("test", "score1: " + (CurrentMatch.currentMatch.getScoreGames().get(team) + 1) + "");
+                CurrentMatch.currentMatch.getScoreGames().set(team, CurrentMatch.currentMatch.getScoreGames().get(team) + 1);
+                break;
+            case 2:
+                Log.i("test", "index2: " + (team + 2) + "");
+                Log.i("test", "score2: " + (CurrentMatch.currentMatch.getScoreGames().get(team + 2) + 1) + "");
+                CurrentMatch.currentMatch.getScoreGames().set(team + 2, CurrentMatch.currentMatch.getScoreGames().get(team + 2) + 1);
+                break;
+            case 3:
+                Log.i("test", "index3: " + (team + 4) + "");
+                Log.i("test", "score3: " + (CurrentMatch.currentMatch.getScoreGames().get(team + 4) + 1) + "");
+                CurrentMatch.currentMatch.getScoreGames().set(team + 4, CurrentMatch.currentMatch.getScoreGames().get(team + 4) + 1);
+                break;
+
+        }
+
         CurrentMatch.currentMatch.getScorePoints().set(0,0);
         CurrentMatch.currentMatch.getScorePoints().set(1,0);
 
@@ -57,8 +87,8 @@ public class ScoreController {
 
     public void addSet(int team) {
         CurrentMatch.currentMatch.getScoreSets().set(team, CurrentMatch.currentMatch.getScoreSets().get(team) + 1);
-        CurrentMatch.currentMatch.getScoreGames().set(0,0);
-        CurrentMatch.currentMatch.getScoreGames().set(1,0);
+        CurrentMatch.currentMatch.getScoreGames().add(0);
+        CurrentMatch.currentMatch.getScoreGames().add(0);
 
         FirebaseController.dbRefMatch.child(CurrentMatch.currentMatchID).setValue(CurrentMatch.currentMatch);
     }
@@ -125,15 +155,15 @@ public class ScoreController {
                 if (isSetTiebreak()) {
                     switchServingTeam();
                     if (isTiebreakDone()) {
-                        addGame(0);
+                        addGame(1);
                         setServingTeamAfterTiebreak();
-                        addSet(0);
+                        addSet(1);
                     }
                 }
                 else if (isGameDone()) {
-                    addGame(0);
+                    addGame(1);
                     if (isSetDone()) {
-                        addSet(0);
+                        addSet(1);
                     }
                 }
             }
@@ -148,15 +178,15 @@ public class ScoreController {
                 if (isSetTiebreak()) {
                     switchServingTeam();
                     if (isTiebreakDone()) {
-                        addGame(1);
+                        addGame(0);
                         setServingTeamAfterTiebreak();
-                        addSet(1);
+                        addSet(0);
                     }
                 }
                 else if (isGameDone()) {
-                    addGame(1);
+                    addGame(0);
                     if (isSetDone()) {
-                        addSet(1);
+                        addSet(0);
                     }
                 }
             }
@@ -185,9 +215,7 @@ public class ScoreController {
         else {
 
         }
-
     }
-
 
     public int setServingTeam() {
         if (CurrentMatch.currentTeams.get(0).isServing()){
@@ -245,6 +273,47 @@ public class ScoreController {
         }
     }
 
+    public boolean isMatchDone() {
+
+        if (CurrentMatch.currentMatch.isMatch1Set()) {
+            if (isSetDone()) {
+
+                CurrentMatch.currentMatch.setMatchDone(true);
+                return true;
+            }
+        }
+        else if (CurrentMatch.currentMatch.isMatch3Set()) {
+            if ((CurrentMatch.currentMatch.getScoreSets().get(0) == 2) || (CurrentMatch.currentMatch.getScoreSets().get(1) == 2)) {
+
+                CurrentMatch.currentMatch.setMatchDone(true);
+                return true;
+            }
+        }
+        else if (CurrentMatch.currentMatch.isMatch5Set()) {
+            if ((CurrentMatch.currentMatch.getScoreSets().get(0) == 3) || (CurrentMatch.currentMatch.getScoreSets().get(1) == 3)) {
+
+                CurrentMatch.currentMatch.setMatchDone(true);
+                return true;
+            }
+        }
+        else if (CurrentMatch.currentMatch.isMatchMatchTiebreak()) {
+            if (isMatchTiebreakDone()) {
+
+                CurrentMatch.currentMatch.setMatchDone(true);
+                return true;
+            }
+        }
+        else if (CurrentMatch.currentMatch.isMatchTiebreak()) {
+            if (isTiebreakDone()) {
+
+                CurrentMatch.currentMatch.setMatchDone(true);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private boolean isGameDone() {
 
         Log.i("test", CurrentMatch.currentMatch.getScorePoints().get(0) + "");
@@ -278,6 +347,17 @@ public class ScoreController {
         }
     }
 
+    private boolean isMatchTiebreakDone() {
+        if (((CurrentMatch.currentMatch.getScorePoints().get(0) >= 10) && ((CurrentMatch.currentMatch.getScorePoints().get(0) - CurrentMatch.currentMatch.getScorePoints().get(1)) >=2))
+            ||
+            ((CurrentMatch.currentMatch.getScorePoints().get(1) >= 10) && ((CurrentMatch.currentMatch.getScorePoints().get(1) - CurrentMatch.currentMatch.getScorePoints().get(0)) >=2))) {
+                return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     private void switchServingTeam() {
         Log.i("modulo", (CurrentMatch.currentMatch.getScorePoints().get(0) + CurrentMatch.currentMatch.getScorePoints().get(1)) % 2 + "");
         if ((((CurrentMatch.currentMatch.getScorePoints().get(0) + CurrentMatch.currentMatch.getScorePoints().get(1)) % 2) == 1)) {
@@ -294,12 +374,12 @@ public class ScoreController {
 
     //TODO skal laves så der kan blive spillet tiebreak
     private boolean isSetDone() {
-        Log.i("Set gameScore", CurrentMatch.currentMatch.getScoreGames().get(0)
+        Log.i("Set gameScore", CurrentMatch.currentMatch.getScoreGames().get(CurrentMatch.currentMatch.getScoreGames().size() - 2)
                 + " "
                 + CurrentMatch.currentMatch.getScoreGames().get(1));
-        if (((CurrentMatch.currentMatch.getScoreGames().get(0) >= 6) && ((CurrentMatch.currentMatch.getScoreGames().get(0) - CurrentMatch.currentMatch.getScoreGames().get(1)) >=2))
+        if (((CurrentMatch.currentMatch.getScoreGames().get(CurrentMatch.currentMatch.getScoreGames().size() - 2) >= 6) && ((CurrentMatch.currentMatch.getScoreGames().get(CurrentMatch.currentMatch.getScoreGames().size() - 2) - CurrentMatch.currentMatch.getScoreGames().get(CurrentMatch.currentMatch.getScoreGames().size() - 1)) >=2))
             ||
-            ((CurrentMatch.currentMatch.getScoreGames().get(1) >= 6) && ((CurrentMatch.currentMatch.getScoreGames().get(1) - CurrentMatch.currentMatch.getScoreGames().get(0)) >=2))) {
+            ((CurrentMatch.currentMatch.getScoreGames().get(CurrentMatch.currentMatch.getScoreGames().size() - 1) >= 6) && ((CurrentMatch.currentMatch.getScoreGames().get(CurrentMatch.currentMatch.getScoreGames().size() - 1) - CurrentMatch.currentMatch.getScoreGames().get(CurrentMatch.currentMatch.getScoreGames().size() - 2)) >=2))) {
             return true;
         }
         else if (isSetTiebreak()) {
@@ -309,4 +389,5 @@ public class ScoreController {
         }
         return false;
     }
+
 }

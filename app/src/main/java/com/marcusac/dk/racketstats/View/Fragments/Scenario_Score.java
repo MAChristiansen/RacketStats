@@ -71,8 +71,21 @@ public class Scenario_Score extends Fragment {
         tvTeam2Sets.setText(CurrentMatch.currentMatch.getScoreSets().get(1).toString());
 
         //set games score
-        tvTeam1Games.setText(CurrentMatch.currentMatch.getScoreGames().get(0).toString());
-        tvTeam2Games.setText(CurrentMatch.currentMatch.getScoreGames().get(1).toString());
+        switch (CurrentMatch.currentMatch.getScoreGames().size() / 2) {
+            case 1:
+                tvTeam1Games.setText(CurrentMatch.currentMatch.getScoreGames().get(0).toString());
+                tvTeam2Games.setText(CurrentMatch.currentMatch.getScoreGames().get(1).toString());
+                break;
+            case 2:
+                tvTeam1Games.setText(CurrentMatch.currentMatch.getScoreGames().get(2).toString());
+                tvTeam2Games.setText(CurrentMatch.currentMatch.getScoreGames().get(3).toString());
+                break;
+            case 3:
+                tvTeam1Games.setText(CurrentMatch.currentMatch.getScoreGames().get(4).toString());
+                tvTeam2Games.setText(CurrentMatch.currentMatch.getScoreGames().get(5).toString());
+                break;
+        }
+
 
         //set point score
         if (scoreController.isSetTiebreak()) {
