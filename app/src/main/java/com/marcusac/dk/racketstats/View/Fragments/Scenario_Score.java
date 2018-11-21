@@ -3,6 +3,7 @@ package com.marcusac.dk.racketstats.View.Fragments;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -97,9 +98,12 @@ public class Scenario_Score extends Fragment {
             public void run() {
                 if (getFragmentManager().getBackStackEntryCount() > 0) {
                     getFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    SystemClock.sleep(600);
                 }
             }
-        }, 1200);
+        }, 700);
+
+
 
         return root;
     }
