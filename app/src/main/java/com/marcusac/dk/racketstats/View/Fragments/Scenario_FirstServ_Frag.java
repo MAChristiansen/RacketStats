@@ -57,16 +57,23 @@ public class Scenario_FirstServ_Frag extends Fragment implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if (v == iwAce) {
-
             scoreController.updateScoreByServ();
 
-           getFragmentManager()
-                   .beginTransaction()
-                   .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
-                   .replace(R.id.fragmentContainer, new Scenario_Score())
-                   .addToBackStack(null)
-                   .commit();
-
+            if (scoreController.isMatchDone()) {
+                getFragmentManager()
+                        .beginTransaction()
+                        .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
+                        .replace(R.id.fragmentContainer, new Match_Done_Frag())
+                        .commit();
+            }
+            else {
+                getFragmentManager()
+                        .beginTransaction()
+                        .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
+                        .replace(R.id.fragmentContainer, new Scenario_Score())
+                        .addToBackStack(null)
+                        .commit();
+            }
         }
 
         else if (v == iwFault) {
